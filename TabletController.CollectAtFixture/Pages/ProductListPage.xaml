@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.CollectAtFixture.Pages.ProductListPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:converters="clr-namespace:TabletController.CollectAtFixture.Converters"
+	xmlns:core="clr-namespace:TabletController.Core.DTOs;assembly=TabletController.Core"
+	xmlns:viewModels="clr-namespace:TabletController.CollectAtFixture.ViewModels"
+	xmlns:controls1="http://schemas.microsoft.com/dotnet/maui/global"
+	x:DataType="viewModels:ProductListViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid>
+		<Grid
+			x:Name="PageContent"
+			Padding="0"
+			ColumnDefinitions="200,*"
+			RowDefinitions="Auto,*,Auto">
+			<Grid.Resources>
+				<converters:CategorySelectionConverter x:Key="CategorySelectionConverter" />
+			</Grid.Resources>
+			<controls1:Header Grid.Row="0" Grid.ColumnSpan="2" />
+
+			<Grid
+				Grid.Row="1"
+				Grid.Column="0"
+				Padding="0,30"
+				RowDefinitions="*,Auto">
+				<CollectionView
+					Grid.Row="0"
+					Margin="0"
+					ItemsSource="{Binding Categories}">
+					<CollectionView.ItemsLayout>
+						<LinearItemsLayout ItemSpacing="0" Orientation="Vertical" />
+					</CollectionView.ItemsLayout>
+					<CollectionView.ItemTemplate>
+						<DataTemplate x:DataType="core:Category">
+							<Grid Style="{StaticResource CategoryItemGridStyle}">
+								<Border x:Name="CategoryBorder" Style="{StaticResource CategoryBorder}">
+									<Border.StrokeShape>
+										<RoundRectangle CornerRadius="0,16,0,16" />
+									</Border.StrokeShape>
+									<Border.Triggers>
+										<DataTrigger
+											Binding="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectedCategory.CategoryId, Converter={StaticResource CategorySelectionConverter}, ConverterParameter={x:Reference CategoryBorder}}"
+											TargetType="Border"
+											Value="True">
+											<Setter Property="BackgroundColor" Value="{StaticResource CategorySelected}" />
+										</DataTrigger>
+									</Border.Triggers>
+									<Grid>
+										<Button
+											x:Name="CategoryButton"
+											HorizontalOptions="Fill"
+											Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectCategoryCommand}"
+											CommandParameter="{Binding .}"
+											Style="{StaticResource CategoryButton}"
+											Text="{Binding CategoryName}">
+											<Button.Triggers>
+												<DataTrigger
+													Binding="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectedCategory.CategoryId, Converter={StaticResource CategorySelectionConverter}, ConverterParameter={x:Reference CategoryButton}}"
+													TargetType="Button"
+													Value="True">
+													<Setter Property="TextColor" Value="{StaticResource CategorySelectedText}" />
+												</DataTrigger>
+											</Button.Triggers>
+										</Button>
+									</Grid>
+								</Border>
+							</Grid>
+						</DataTemplate>
+					</CollectionView.ItemTemplate>
+				</CollectionView>
+				<Grid
+					Grid.Row="1"
+					Margin="0,0,0,100"
+					Style="{StaticResource CategoryItemGridStyle}">
+					<Border Style="{StaticResource CategoryBorderAlt}">
+						<Border.StrokeShape>
+							<RoundRectangle CornerRadius="0,16,0,16" />
+						</Border.StrokeShape>
+						<Grid>
+							<Button
+								HorizontalOptions="Fill"
+								Command="{Binding NextCustomerCommand}"
+								Style="{StaticResource CategoryButton}"
+								Text="Cancel order" />
+						</Grid>
+					</Border>
+				</Grid>
+			</Grid>
+
+			<ScrollView Grid.Row="1" Grid.Column="1">
+				<VerticalStackLayout
+					Padding="20,30"
+					Spacing="0">
+					<Label Style="{StaticResource Subtitle}" Text="{Binding SelectedCategory.CategoryName}" />
+
+					<CollectionView ItemsSource="{Binding Products}">
+						<CollectionView.ItemTemplate>
+							<DataTemplate x:DataType="core:ProductSummary">
+								<controls1:ProductCard
+									Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectProductCommand}"
+									CommandParameter="{Binding .}"
+									Product="{Binding .}" />
+							</DataTemplate>
+						</CollectionView.ItemTemplate>
+					</CollectionView>
+				</VerticalStackLayout>
+			</ScrollView>
+
+			<Grid
+				Grid.Row="2"
+				Grid.ColumnSpan="2"
+				RowDefinitions="Auto,*">
+				<BoxView Style="{StaticResource FooterBorder}" />
+				<ContentView Grid.Row="1" Style="{StaticResource FooterContent}">
+					<Button
+						HorizontalOptions="Start"
+						Command="{Binding NextCustomerCommand}"
+						Style="{StaticResource SecondaryButtonStyle}"
+						Text="Back" />
+				</ContentView>
+			</Grid>
+		</Grid>
+
+		<controls1:InactivityPopup
+			CountdownSeconds="{Binding TimeoutCountdownSeconds}"
+			DismissCommand="{Binding DismissTimeoutCommand}"
+			IsVisible="{Binding IsTimeoutPopupVisible}"
+			NextCustomerCommand="{Binding NextCustomerCommand}"
+			Progress="{Binding TimeoutCountdownProgress}" />
+	</Grid>
+</ContentPage>

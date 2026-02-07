@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.Collect.Pages.ErrorPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:TabletController.Shared.Controls;assembly=TabletController.Shared"
+	xmlns:viewModels="clr-namespace:TabletController.Collect.ViewModels"
+	x:DataType="viewModels:ErrorViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid Padding="0" RowDefinitions="Auto,*,Auto">
+		<controls:Header Grid.Row="0" />
+
+		<ScrollView Grid.Row="1">
+			<VerticalStackLayout Padding="60,0" Spacing="20">
+				<Label
+					Margin="-10,0,0,0"
+					LineHeight="0.9"
+					Style="{StaticResource HeroTitle}"
+					Text="Hmm."
+					TextColor="#FF0000" />
+
+				<VerticalStackLayout Spacing="10">
+					<Label Style="{StaticResource LargeText}" Text="That code hasn't been" />
+					<Label Style="{StaticResource LargeText}" Text="recognised." />
+
+					<Label
+						Margin="0,60,0,0"
+						Style="{StaticResource LargeText}"
+						Text="We've alerted a colleague to" />
+					<Label Style="{StaticResource LargeText}" Text="come and help you." />
+
+					<Label
+						Margin="0,60,0,0"
+						FontFamily="{StaticResource BoldFontFamily}"
+						Style="{StaticResource LargeText}"
+						Text="Please wait a few moments." />
+				</VerticalStackLayout>
+			</VerticalStackLayout>
+		</ScrollView>
+
+		<Grid Grid.Row="2" RowDefinitions="Auto,*">
+			<BoxView Style="{StaticResource FooterBorder}" />
+			<ContentView Grid.Row="1" Style="{StaticResource FooterContent}">
+				<Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+					<Button
+						Grid.Column="0"
+						HorizontalOptions="Start"
+						Command="{Binding BackCommand}"
+						Style="{StaticResource SecondaryButtonStyle}"
+						Text="Back" />
+					<Button
+						Grid.Column="1"
+						HorizontalOptions="End"
+						Command="{Binding NextCustomerCommand}"
+						Style="{StaticResource SecondaryButtonStyle}"
+						Text="Next customer" />
+				</Grid>
+			</ContentView>
+		</Grid>
+	</Grid>
+</ContentPage>

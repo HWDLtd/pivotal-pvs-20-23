@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Newland FM430 Scanner - VID: 0x1EAB (7851 decimal) -->
+    <!-- USB CDC (Virtual Serial Port) - PID: 0x06 -->
+    <usb-device vendor-id="7851" product-id="6" />
+    <!-- USB HID POS Interface - PID: 0x10 -->
+    <usb-device vendor-id="7851" product-id="16" />
+    <!-- USB Composite KBW+POS Interface - PID: 0x22 -->
+    <usb-device vendor-id="7851" product-id="34" />
+
+    <!-- Epson TM-m30 III Receipt Printer - VID: 0x04B8 (1208 decimal) -->
+    <usb-device vendor-id="1208" />
+</resources>

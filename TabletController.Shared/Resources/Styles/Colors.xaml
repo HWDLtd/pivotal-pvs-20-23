@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+	<Color x:Key="Primary">#231F20</Color>
+	<Color x:Key="Secondary">#27963C</Color>
+
+	<Color x:Key="White">#FFFFFF</Color>
+	<Color x:Key="Black">#000000</Color>
+	<Color x:Key="Grey">#E9E9E9</Color>
+
+	<Color x:Key="BackgroundPrimary">#FFFFFF</Color>
+	<Color x:Key="BackgroundSecondary">#F5F5F5</Color>
+	<Color x:Key="TextPrimary">#231F20</Color>
+	<Color x:Key="TextSecondary">#6E6E6E</Color>
+	<Color x:Key="CategorySelected">#231F20</Color>
+	<Color x:Key="CategoryUnselected">#FFFFFF</Color>
+	<Color x:Key="CategorySelectedText">#FFFFFF</Color>
+	<Color x:Key="CategoryUnselectedText">#231F20</Color>
+	<Color x:Key="BorderColor">#231F20</Color>
+
+</ResourceDictionary>

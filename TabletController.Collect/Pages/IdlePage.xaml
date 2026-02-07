@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.Collect.Pages.IdlePage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:viewModels="clr-namespace:TabletController.Collect.ViewModels"
+	x:DataType="viewModels:IdleViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid Padding="0" RowDefinitions="Auto,*,Auto">
+		<Border
+			Grid.Row="0"
+			Padding="40,15"
+			BackgroundColor="{StaticResource Primary}">
+			<Image
+				HorizontalOptions="Start"
+				Source="logo.svg"
+				Style="{StaticResource LogoLarge}" />
+		</Border>
+
+		<VerticalStackLayout
+			Grid.Row="1"
+			Padding="40,0"
+			HorizontalOptions="Fill"
+			VerticalOptions="Start"
+			Spacing="0">
+
+			<Label
+				HorizontalOptions="Start"
+				HorizontalTextAlignment="Start"
+				LineHeight="0.9"
+				Style="{StaticResource HeroTitle}"
+				Text="Select &amp; collect." />
+
+			<VerticalStackLayout HorizontalOptions="Start" Spacing="0">
+				<Label HorizontalOptions="Start" Style="{StaticResource MainTitle}">
+					<Label.FormattedText>
+						<FormattedString>
+							<Span Style="{StaticResource MainTitle}" Text="Scan your " />
+							<Span Style="{StaticResource MainTitleBold}" Text="code " />
+							<Span Style="{StaticResource MainTitle}" Text="to" />
+						</FormattedString>
+					</Label.FormattedText>
+				</Label>
+				<Label Style="{StaticResource MainTitle}" Text="collect your item." />
+			</VerticalStackLayout>
+		</VerticalStackLayout>
+
+		<VerticalStackLayout
+			Grid.Row="2"
+			Padding="60,50"
+			VerticalOptions="End"
+			Spacing="50">
+			<HorizontalStackLayout
+				HorizontalOptions="Start"
+				VerticalOptions="Start"
+				Spacing="15">
+				<Image
+					x:Name="ArrowsImage"
+					HeightRequest="80"
+					Source="arrows.svg" />
+				<Label
+					x:Name="ScanQrLabel"
+					VerticalOptions="Center"
+					Style="{StaticResource LargeText}"
+					Text="Scan code here" />
+			</HorizontalStackLayout>
+		</VerticalStackLayout>
+	</Grid>
+</ContentPage>

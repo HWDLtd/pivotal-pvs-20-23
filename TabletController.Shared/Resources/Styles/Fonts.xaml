@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+	<x:String x:Key="DefaultFontFamily">HikasamiRegular</x:String>
+	<x:String x:Key="BoldFontFamily">HikasamiBold</x:String>
+
+	<x:Double x:Key="BaseFontSize">20</x:Double>
+	<x:Double x:Key="HeroFontSize">180</x:Double>
+	<x:Double x:Key="TitleFontSize">60</x:Double>
+	<x:Double x:Key="SubtitleFontSize">30</x:Double>
+
+	<Style TargetType="Label">
+		<Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+		<Setter Property="LineHeight" Value="1.4" />
+	</Style>
+
+	<Style TargetType="Span">
+		<Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+	</Style>
+
+	<Style TargetType="Button">
+		<Setter Property="FontFamily" Value="{StaticResource BoldFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource SubtitleFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+	</Style>
+
+	<Style TargetType="Entry">
+		<Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+	</Style>
+
+	<Style TargetType="Editor">
+		<Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+	</Style>
+
+	<Style TargetType="SearchBar">
+		<Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+	</Style>
+
+	<Style TargetType="Picker">
+		<Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+	</Style>
+
+	<Style TargetType="DatePicker">
+		<Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+	</Style>
+
+	<Style TargetType="TimePicker">
+		<Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+	</Style>
+</ResourceDictionary>

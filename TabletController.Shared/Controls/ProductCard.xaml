@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Border
+	x:Class="TabletController.Shared.Controls.ProductCard"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:TabletController.Shared.Controls"
+	xmlns:core="clr-namespace:TabletController.Core.DTOs;assembly=TabletController.Core"
+	x:Name="Root"
+	Margin="0,10"
+	Padding="15,25"
+	BackgroundColor="{StaticResource White}"
+	Stroke="{StaticResource BorderColor}"
+	StrokeThickness="1">
+	<Border.StrokeShape>
+		<RoundRectangle CornerRadius="16" />
+	</Border.StrokeShape>
+	<Grid
+		x:DataType="core:ProductSummary"
+		BindingContext="{Binding Product, Source={x:Reference Root}}"
+		ColumnDefinitions="Auto,*,Auto"
+		ColumnSpacing="15"
+		RowDefinitions="Auto,Auto">
+		<Image
+			Grid.Row="0"
+			Grid.RowSpan="2"
+			Grid.Column="0"
+			WidthRequest="100"
+			HeightRequest="100"
+			VerticalOptions="Center"
+			Aspect="AspectFit"
+			Source="{Binding ImageUrl}" />
+
+		<Label
+			Grid.Row="0"
+			Grid.Column="1"
+			Grid.ColumnSpan="2"
+			Padding="0,0,0,10"
+			LineBreakMode="WordWrap"
+			Style="{StaticResource Subtitle}"
+			Text="{Binding Name}" />
+
+		<Label
+			Grid.Row="1"
+			Grid.Column="1"
+			VerticalOptions="Center"
+			LineBreakMode="WordWrap"
+			LineHeight="1.4"
+			Text="{Binding ShortDescription}" />
+
+		<controls:FormattedButton
+			Grid.Row="1"
+			Grid.Column="2"
+			HorizontalOptions="End"
+			VerticalOptions="Center"
+			Command="{Binding Command, Source={x:Reference Root}}"
+			CommandParameter="{Binding CommandParameter, Source={x:Reference Root}}"
+			IsVisible="{Binding ShowPriceAsButton, Source={x:Reference Root}}">
+			<controls:FormattedButton.FormattedText>
+				<FormattedString>
+					<Span Style="{StaticResource ButtonLabel}" Text="€" />
+					<Span Style="{StaticResource ButtonLabelBold}" Text="{Binding Price, StringFormat='{0:F2}'}" />
+				</FormattedString>
+			</controls:FormattedButton.FormattedText>
+		</controls:FormattedButton>
+
+		<Label
+			Grid.Row="1"
+			Grid.Column="2"
+			Padding="0,0,40,0"
+			HorizontalOptions="End"
+			VerticalOptions="Center"
+			IsVisible="{Binding ShowPriceAsText, Source={x:Reference Root}}">
+			<Label.FormattedText>
+				<FormattedString>
+					<Span
+						Style="{StaticResource ButtonLabel}"
+						Text="€"
+						TextColor="{StaticResource TextPrimary}" />
+					<Span
+						Style="{StaticResource ButtonLabelBold}"
+						Text="{Binding Price, StringFormat='{0:F2}'}"
+						TextColor="{StaticResource TextPrimary}" />
+				</FormattedString>
+			</Label.FormattedText>
+		</Label>
+	</Grid>
+</Border>

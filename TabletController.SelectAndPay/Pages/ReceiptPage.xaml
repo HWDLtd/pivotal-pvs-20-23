@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.SelectAndPay.Pages.ReceiptPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:TabletController.Shared.Controls;assembly=TabletController.Shared"
+	xmlns:viewModels="clr-namespace:TabletController.SelectAndPay.ViewModels"
+	xmlns:core="clr-namespace:TabletController.Core.DTOs;assembly=TabletController.Core"
+	xmlns:enums="clr-namespace:TabletController.Core.Enums;assembly=TabletController.Core"
+	x:DataType="viewModels:ReceiptViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid>
+		<Grid
+			x:Name="PageContent"
+			Padding="0"
+			RowDefinitions="Auto,*,Auto">
+			<controls:Header Grid.Row="0" />
+
+			<ScrollView Grid.Row="1">
+				<VerticalStackLayout Padding="60,30" Spacing="10">
+					<Label
+						Style="{StaticResource Subtitle}"
+						Text="Receipt" />
+
+					<Border
+						Padding="40,30"
+						BackgroundColor="{StaticResource White}"
+						StrokeThickness="1"
+						Stroke="{StaticResource BorderPrimary}">
+						<Border.StrokeShape>
+							<RoundRectangle CornerRadius="8" />
+						</Border.StrokeShape>
+						<VerticalStackLayout Spacing="8">
+							<CollectionView ItemsSource="{Binding ReceiptData.Lines}">
+								<CollectionView.ItemTemplate>
+									<DataTemplate x:DataType="core:ReceiptLine">
+										<Grid>
+											<!-- Text Line -->
+											<Label
+												x:Name="TextLabel"
+												IsVisible="False"
+												FontSize="{StaticResource SubtitleFontSize}"
+												HorizontalOptions="Start"
+												Text="{Binding Text}"
+												TextColor="{StaticResource TextPrimary}">
+												<Label.Triggers>
+													<DataTrigger
+														Binding="{Binding LineType}"
+														TargetType="Label"
+														Value="{x:Static enums:ReceiptLineType.Text}">
+														<Setter Property="IsVisible" Value="True" />
+													</DataTrigger>
+													<DataTrigger
+														Binding="{Binding IsBold}"
+														TargetType="Label"
+														Value="True">
+														<Setter Property="FontAttributes" Value="Bold" />
+													</DataTrigger>
+													<DataTrigger
+														Binding="{Binding Alignment}"
+														TargetType="Label"
+														Value="{x:Static enums:ReceiptAlignment.Center}">
+														<Setter Property="HorizontalOptions" Value="Center" />
+													</DataTrigger>
+													<DataTrigger
+														Binding="{Binding Alignment}"
+														TargetType="Label"
+														Value="{x:Static enums:ReceiptAlignment.Right}">
+														<Setter Property="HorizontalOptions" Value="End" />
+													</DataTrigger>
+												</Label.Triggers>
+											</Label>
+
+											<!-- Image Line -->
+											<Image
+												x:Name="ImageLabel"
+												IsVisible="False"
+												HorizontalOptions="Center"
+												Source="{Binding Text}"
+												WidthRequest="{Binding Width}"
+												HeightRequest="{Binding Height}"
+												Aspect="AspectFit">
+												<Image.Triggers>
+													<DataTrigger
+														Binding="{Binding LineType}"
+														TargetType="Image"
+														Value="{x:Static enums:ReceiptLineType.Image}">
+														<Setter Property="IsVisible" Value="True" />
+													</DataTrigger>
+												</Image.Triggers>
+											</Image>
+
+											<!-- QR Code Line - Display as text for now -->
+											<Label
+												x:Name="QrCodeLabel"
+												IsVisible="False"
+												FontSize="24"
+												FontAttributes="Bold"
+												HorizontalOptions="Center"
+												Text="{Binding Text}"
+												TextColor="{StaticResource TextPrimary}">
+												<Label.Triggers>
+													<DataTrigger
+														Binding="{Binding LineType}"
+														TargetType="Label"
+														Value="{x:Static enums:ReceiptLineType.QrCode}">
+														<Setter Property="IsVisible" Value="True" />
+													</DataTrigger>
+												</Label.Triggers>
+											</Label>
+
+											<!-- Blank Line -->
+											<BoxView
+												x:Name="BlankLine"
+												IsVisible="False"
+												HeightRequest="10"
+												Color="Transparent">
+												<BoxView.Triggers>
+													<DataTrigger
+														Binding="{Binding LineType}"
+														TargetType="BoxView"
+														Value="{x:Static enums:ReceiptLineType.BlankLine}">
+														<Setter Property="IsVisible" Value="True" />
+													</DataTrigger>
+												</BoxView.Triggers>
+											</BoxView>
+										</Grid>
+									</DataTemplate>
+								</CollectionView.ItemTemplate>
+							</CollectionView>
+						</VerticalStackLayout>
+					</Border>
+				</VerticalStackLayout>
+			</ScrollView>
+
+			<Grid Grid.Row="2" RowDefinitions="Auto,*">
+				<BoxView Style="{StaticResource FooterBorder}" />
+				<ContentView Grid.Row="1" Style="{StaticResource FooterContent}">
+					<Button
+						HorizontalOptions="Center"
+						Command="{Binding NextCustomerCommand}"
+						Style="{StaticResource SecondaryButtonStyle}"
+						Text="Next customer" />
+				</ContentView>
+			</Grid>
+		</Grid>
+
+		<controls:InactivityPopup
+			CountdownSeconds="{Binding TimeoutCountdownSeconds}"
+			DismissCommand="{Binding DismissTimeoutCommand}"
+			IsVisible="{Binding IsTimeoutPopupVisible}"
+			NextCustomerCommand="{Binding NextCustomerCommand}"
+			Progress="{Binding TimeoutCountdownProgress}" />
+	</Grid>
+</ContentPage>

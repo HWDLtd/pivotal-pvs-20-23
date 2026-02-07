@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.SelectAndPay.Pages.ThankYouPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:TabletController.Shared.Controls;assembly=TabletController.Shared"
+	xmlns:viewModels="clr-namespace:TabletController.SelectAndPay.ViewModels"
+	x:DataType="viewModels:ThankYouViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid>
+		<Grid
+			x:Name="PageContent"
+			Padding="0"
+			RowDefinitions="Auto,*,Auto">
+			<controls:Header Grid.Row="0" />
+
+			<ScrollView Grid.Row="1">
+				<VerticalStackLayout Padding="60,0" Spacing="20">
+					<Label
+						Margin="-10,0,0,0"
+						LineHeight="0.9"
+						Style="{StaticResource HeroTitle}"
+						Text="Thank you." />
+
+					<HorizontalStackLayout VerticalOptions="Fill">
+						<Image
+							WidthRequest="176"
+							HeightRequest="200"
+							HorizontalOptions="Start"
+							Aspect="AspectFit"
+							Source="receipt.png" />
+						<VerticalStackLayout Margin="50,0" VerticalOptions="Center">
+							<Label Style="{StaticResource LargeText}" Text="Your collection code is" />
+							<Label Style="{StaticResource MainTitleBold}" Text="{Binding OrderNumber}" />
+						</VerticalStackLayout>
+
+					</HorizontalStackLayout>
+
+					<VerticalStackLayout HorizontalOptions="Start">
+						<Label Style="{StaticResource LargeText}" Text="Take your printed receipt to the" />
+						<Label Style="{StaticResource Subtitle}">
+							<Label.FormattedText>
+								<FormattedString>
+									<Span
+										FontFamily="{StaticResource BoldFontFamily}"
+										FontSize="{StaticResource SubtitleFontSize}"
+										Text="Select and Collect lockers " />
+									<Span FontSize="{StaticResource SubtitleFontSize}" Text="at" />
+								</FormattedString>
+							</Label.FormattedText>
+						</Label>
+						<Label Style="{StaticResource LargeText}" Text="the front of store." />
+					</VerticalStackLayout>
+
+					<Label
+						Margin="0,45"
+						Style="{StaticResource Subtitle}"
+						Text="Thank you for shopping with us." />
+				</VerticalStackLayout>
+			</ScrollView>
+
+			<Grid Grid.Row="2" RowDefinitions="Auto,*">
+				<BoxView Style="{StaticResource FooterBorder}" />
+				<ContentView Grid.Row="1" Style="{StaticResource FooterContent}">
+					<Button
+						HorizontalOptions="Center"
+						Command="{Binding NextCustomerCommand}"
+						Style="{StaticResource SecondaryButtonStyle}"
+						Text="Next customer" />
+				</ContentView>
+			</Grid>
+		</Grid>
+
+		<controls:InactivityPopup
+			CountdownSeconds="{Binding TimeoutCountdownSeconds}"
+			DismissCommand="{Binding DismissTimeoutCommand}"
+			IsVisible="{Binding IsTimeoutPopupVisible}"
+			NextCustomerCommand="{Binding NextCustomerCommand}"
+			Progress="{Binding TimeoutCountdownProgress}" />
+	</Grid>
+</ContentPage>

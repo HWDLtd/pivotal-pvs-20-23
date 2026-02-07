@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+	x:Class="TabletController.Collect.AppShell"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:pages="clr-namespace:TabletController.Collect.Pages"
+	Title="Collect"
+	FlyoutBehavior="Disabled"
+	Shell.NavBarIsVisible="False">
+
+	<ShellContent
+		Title="Home"
+		ContentTemplate="{DataTemplate pages:IdlePage}"
+		Route="idle" />
+
+	<ShellContent
+		Title="Just a Moment"
+		ContentTemplate="{DataTemplate pages:JustAMomentPage}"
+		Route="justAMoment" />
+
+	<ShellContent
+		Title="Success"
+		ContentTemplate="{DataTemplate pages:SuccessPage}"
+		Route="success" />
+
+	<ShellContent
+		Title="Error"
+		ContentTemplate="{DataTemplate pages:ErrorPage}"
+		Route="error" />
+
+</Shell>

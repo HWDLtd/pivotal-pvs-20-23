@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+	<Style x:Key="PrimaryButtonStyle" TargetType="Button">
+		<Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />
+		<Setter Property="TextColor" Value="{StaticResource White}" />
+		<Setter Property="CornerRadius" Value="16" />
+		<Setter Property="Padding" Value="15" />
+		<Setter Property="MinimumHeightRequest" Value="50" />
+		<Setter Property="VisualStateManager.VisualStateGroups">
+			<VisualStateGroupList>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="Pressed">
+						<VisualState.Setters>
+							<Setter Property="BackgroundColor" Value="#1F7A30" />
+							<Setter Property="Scale" Value="0.98" />
+						</VisualState.Setters>
+					</VisualState>
+					<VisualState x:Name="Disabled">
+						<VisualState.Setters>
+							<Setter Property="BackgroundColor" Value="#E0E0E0" />
+							<Setter Property="TextColor" Value="#6E6E6E" />
+						</VisualState.Setters>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateGroupList>
+		</Setter>
+	</Style>
+
+	<Style x:Key="SecondaryButtonStyle" TargetType="Button">
+		<Setter Property="BackgroundColor" Value="{StaticResource White}" />
+		<Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+		<Setter Property="CornerRadius" Value="16" />
+		<Setter Property="Padding" Value="40, 25" />
+		<Setter Property="BorderWidth" Value="1" />
+		<Setter Property="BorderColor" Value="{StaticResource TextPrimary}" />
+		<Setter Property="MinimumHeightRequest" Value="50" />
+		<Setter Property="VisualStateManager.VisualStateGroups">
+			<VisualStateGroupList>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="Pressed">
+						<VisualState.Setters>
+							<Setter Property="BackgroundColor" Value="{StaticResource Grey}" />
+							<Setter Property="Scale" Value="0.98" />
+						</VisualState.Setters>
+					</VisualState>
+					<VisualState x:Name="Disabled">
+						<VisualState.Setters>
+							<Setter Property="BackgroundColor" Value="#C0C0C0" />
+							<Setter Property="TextColor" Value="#808080" />
+						</VisualState.Setters>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateGroupList>
+		</Setter>
+	</Style>
+
+	<Style x:Key="CategoryButton" TargetType="Button">
+		<Setter Property="TextColor" Value="{StaticResource CategoryUnselectedText}" />
+		<Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+		<Setter Property="Padding" Value="20" />
+		<Setter Property="BackgroundColor" Value="Transparent" />
+		<Setter Property="LineBreakMode" Value="WordWrap" />
+		<Setter Property="VisualStateManager.VisualStateGroups">
+			<VisualStateGroupList>
+				<VisualStateGroup x:Name="CommonStates">
+					<VisualState x:Name="Normal" />
+					<VisualState x:Name="Pressed">
+						<VisualState.Setters>
+							<Setter Property="BackgroundColor" Value="{StaticResource Grey}" />
+							<Setter Property="Scale" Value="0.98" />
+						</VisualState.Setters>
+					</VisualState>
+				</VisualStateGroup>
+			</VisualStateGroupList>
+		</Setter>
+	</Style>
+
+	<Style x:Key="CategoryBorder" TargetType="Border">
+		<Setter Property="Stroke" Value="{StaticResource BorderColor}" />
+		<Setter Property="StrokeThickness" Value="1" />
+		<Setter Property="Margin" Value="-2, 0, 0, 15" />
+		<Setter Property="BackgroundColor" Value="{StaticResource CategoryUnselected}" />
+	</Style>
+
+	<Style
+		x:Key="CategoryBorderAlt"
+		BasedOn="{StaticResource CategoryBorder}"
+		TargetType="Border">
+		<Setter Property="BackgroundColor" Value="{StaticResource Grey}" />
+	</Style>
+
+	<Style x:Key="CategoryItemGridStyle" TargetType="Grid">
+		<Setter Property="Margin" Value="0,0,0,5" />
+	</Style>
+
+	<Style x:Key="LogoRegular" TargetType="Image">
+		<Setter Property="HeightRequest" Value="70" />
+		<Setter Property="Margin" Value="20,20" />
+	</Style>
+
+	<Style x:Key="LogoLarge" TargetType="Image">
+		<Setter Property="HeightRequest" Value="156" />
+		<Setter Property="Margin" Value="20,40,20,40" />
+	</Style>
+
+	<Style x:Key="HeroTitle" TargetType="Label">
+		<Setter Property="FontSize" Value="{StaticResource HeroFontSize}" />
+		<Setter Property="FontFamily" Value="{StaticResource BoldFontFamily}" />
+	</Style>
+
+	<Style x:Key="MainTitle" TargetType="Label">
+		<Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
+	</Style>
+
+	<Style x:Key="MainTitleBold" TargetType="Label">
+		<Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
+		<Setter Property="FontFamily" Value="{StaticResource BoldFontFamily}" />
+	</Style>
+
+	<Style x:Key="Subtitle" TargetType="Label">
+		<Setter Property="FontSize" Value="{StaticResource SubtitleFontSize}" />
+		<Setter Property="FontFamily" Value="{StaticResource BoldFontFamily}" />
+		<Setter Property="LineHeight" Value="1.2" />
+	</Style>
+
+	<Style x:Key="LargeText" TargetType="Label">
+		<Setter Property="FontSize" Value="{StaticResource SubtitleFontSize}" />
+		<Setter Property="LineHeight" Value="1.2" />
+	</Style>
+
+	<Style x:Key="ButtonLabel" TargetType="Span">
+		<Setter Property="TextColor" Value="{StaticResource White}" />
+		<Setter Property="FontSize" Value="{StaticResource SubtitleFontSize}" />
+	</Style>
+
+	<Style
+		x:Key="ButtonLabelBold"
+		BasedOn="{StaticResource ButtonLabel}"
+		TargetType="Span">
+		<Setter Property="FontFamily" Value="{StaticResource BoldFontFamily}" />
+	</Style>
+
+	<!--  Footer styles  -->
+	<Style x:Key="FooterBorder" TargetType="BoxView">
+		<Setter Property="HeightRequest" Value="1" />
+		<Setter Property="BackgroundColor" Value="{StaticResource BorderColor}" />
+	</Style>
+
+	<Style x:Key="FooterContent" TargetType="ContentView">
+		<Setter Property="Padding" Value="45,25" />
+		<Setter Property="HeightRequest" Value="150" />
+	</Style>
+
+</ResourceDictionary>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.SelectAndPay.Pages.PaymentPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:TabletController.Shared.Controls;assembly=TabletController.Shared"
+	xmlns:core="clr-namespace:TabletController.Core.DTOs;assembly=TabletController.Core"
+	xmlns:viewModels="clr-namespace:TabletController.SelectAndPay.ViewModels"
+	x:DataType="viewModels:PaymentViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid>
+		<Grid
+			x:Name="PageContent"
+			Padding="0"
+			RowDefinitions="Auto,*,Auto,Auto">
+			<controls:Header Grid.Row="0" />
+
+			<ScrollView Grid.Row="1">
+				<VerticalStackLayout Padding="60,30" Spacing="30">
+					<Label Style="{StaticResource Subtitle}" Text="Your purchase" />
+
+					<controls:ProductCard
+						Margin="0,0,0,10"
+						Product="{Binding Product}"
+						ShowPriceAsButton="False" />
+
+					<VerticalStackLayout HorizontalOptions="Start">
+						<Label Style="{StaticResource MainTitle}" Text="Follow the" />
+						<Label Style="{StaticResource MainTitle}" Text="instructions on the" />
+						<Label Style="{StaticResource MainTitle}" Text="payment device." />
+					</VerticalStackLayout>
+
+					<Image
+						WidthRequest="141"
+						HeightRequest="200"
+						HorizontalOptions="Start"
+						Aspect="AspectFit"
+						Source="payment_card_symbol.png" />
+				</VerticalStackLayout>
+			</ScrollView>
+
+			<Label
+				Grid.Row="2"
+				Margin="60,20"
+				HorizontalOptions="End"
+				VerticalOptions="Center">
+				<Label.FormattedText>
+					<FormattedString>
+						<Span
+							FontFamily="{StaticResource BoldFontFamily}"
+							FontSize="{StaticResource SubtitleFontSize}"
+							Text="Total to pay: "
+							TextColor="{StaticResource TextPrimary}" />
+						<Span
+							FontFamily="{StaticResource DefaultFontFamily}"
+							FontSize="{StaticResource SubtitleFontSize}"
+							Text="€"
+							TextColor="{StaticResource TextPrimary}" />
+						<Span
+							FontFamily="{StaticResource BoldFontFamily}"
+							FontSize="{StaticResource SubtitleFontSize}"
+							Text="{Binding Product.Price, StringFormat='{0:F2}'}"
+							TextColor="{StaticResource TextPrimary}" />
+					</FormattedString>
+				</Label.FormattedText>
+			</Label>
+
+			<Grid Grid.Row="3" RowDefinitions="Auto,*">
+				<BoxView Style="{StaticResource FooterBorder}" />
+				<ContentView Grid.Row="1" Style="{StaticResource FooterContent}">
+					<Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+						<Button
+							Grid.Column="0"
+							HorizontalOptions="Start"
+							Command="{Binding BackCommand}"
+							Style="{StaticResource SecondaryButtonStyle}"
+							Text="Back" />
+						<Border
+							x:Name="MakePaymentBorder"
+							Grid.Column="1"
+							Padding="40,15"
+							HorizontalOptions="End"
+							BackgroundColor="{StaticResource Primary}"
+							MinimumHeightRequest="50"
+							StrokeThickness="0">
+							<Border.StrokeShape>
+								<RoundRectangle CornerRadius="16" />
+							</Border.StrokeShape>
+							<HorizontalStackLayout
+								HorizontalOptions="Center"
+								VerticalOptions="Center"
+								Spacing="8">
+								<Image
+									WidthRequest="35"
+									HeightRequest="35"
+									VerticalOptions="Center"
+									Aspect="AspectFit"
+									Source="contactless_symbol.svg" />
+								<Label
+									VerticalOptions="Center"
+									FontSize="{StaticResource SubtitleFontSize}"
+									Text="Make payment"
+									TextColor="{StaticResource White}" />
+							</HorizontalStackLayout>
+						</Border>
+					</Grid>
+				</ContentView>
+			</Grid>
+		</Grid>
+
+		<controls:InactivityPopup
+			CountdownSeconds="{Binding TimeoutCountdownSeconds}"
+			DismissCommand="{Binding DismissTimeoutCommand}"
+			IsVisible="{Binding IsTimeoutPopupVisible}"
+			NextCustomerCommand="{Binding NextCustomerCommand}"
+			Progress="{Binding TimeoutCountdownProgress}" />
+	</Grid>
+</ContentPage>

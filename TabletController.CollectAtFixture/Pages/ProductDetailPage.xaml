@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.CollectAtFixture.Pages.ProductDetailPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="http://schemas.microsoft.com/dotnet/maui/global"
+	xmlns:viewModels="clr-namespace:TabletController.CollectAtFixture.ViewModels"
+	x:DataType="viewModels:ProductDetailViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid>
+		<Grid
+			x:Name="PageContent"
+			Padding="0"
+			RowDefinitions="Auto,*,Auto">
+			<controls:Header Grid.Row="0" />
+
+			<ScrollView Grid.Row="1">
+				<Grid
+					Padding="60,30"
+					ColumnDefinitions="*,Auto"
+					RowDefinitions="Auto,Auto,Auto,1*,Auto"
+					RowSpacing="0">
+					<Label
+						Grid.Row="0"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Margin="0,0,0,15"
+						Style="{StaticResource Subtitle}"
+						Text="{Binding Product.Name}" />
+
+
+					<Label
+						Grid.Row="1"
+						Grid.Column="0"
+						VerticalOptions="Start"
+						Style="{StaticResource Subtitle}"
+						Text="{Binding Product.Price, StringFormat='€{0:F2}'}"
+						TextColor="{StaticResource Secondary}" />
+
+					<Image
+						Grid.Row="1"
+						Grid.RowSpan="3"
+						Grid.Column="1"
+						WidthRequest="250"
+						HeightRequest="250"
+						Margin="50,0,0,20"
+						Aspect="AspectFit"
+						Source="{Binding Product.ImageUrl}" />
+
+					<Label
+						Grid.Row="2"
+						Grid.Column="0"
+						Margin="0,15"
+						Style="{StaticResource Subtitle}"
+						Text="★★★★★"
+						TextColor="{StaticResource Secondary}" />
+
+					<Label
+						Grid.Row="3"
+						Grid.Column="0"
+						Style="{StaticResource Subtitle}"
+						Text="{Binding Product.ShortDescription}" />
+
+					<VerticalStackLayout
+						Grid.Row="4"
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Spacing="10">
+
+						<Label Text="{Binding Product.LongDescription}" />
+
+						<Label
+							Margin="0,20,0,10"
+							FontAttributes="Bold"
+							Style="{StaticResource Subtitle}"
+							Text="Highlights" />
+
+						<CollectionView ItemsSource="{Binding HighlightsList}">
+							<CollectionView.ItemTemplate>
+								<DataTemplate x:DataType="x:String">
+									<Grid
+										Margin="0,5"
+										ColumnDefinitions="Auto,*"
+										ColumnSpacing="10">
+										<Label
+											Grid.Column="0"
+											VerticalOptions="Start"
+											Text="•" />
+										<Label
+											Grid.Column="1"
+											VerticalOptions="Start"
+											LineBreakMode="WordWrap"
+											Text="{Binding .}" />
+									</Grid>
+								</DataTemplate>
+							</CollectionView.ItemTemplate>
+						</CollectionView>
+					</VerticalStackLayout>
+				</Grid>
+			</ScrollView>
+
+			<Grid Grid.Row="2" RowDefinitions="Auto,*">
+				<BoxView Style="{StaticResource FooterBorder}" />
+				<ContentView Grid.Row="1" Style="{StaticResource FooterContent}">
+					<Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+						<Button
+							Grid.Column="0"
+							HorizontalOptions="Start"
+							Command="{Binding BackCommand}"
+							Style="{StaticResource SecondaryButtonStyle}"
+							Text="Back" />
+						<controls:FormattedButton
+							Grid.Column="1"
+							HorizontalOptions="End"
+							BorderPadding="40,15"
+							Command="{Binding BuyNowCommand}">
+							<controls:FormattedButton.FormattedText>
+								<FormattedString>
+									<Span Style="{StaticResource ButtonLabel}" Text="Buy now €" />
+									<Span Style="{StaticResource ButtonLabelBold}" Text="{Binding Product.Price, StringFormat='{0:F2}'}" />
+								</FormattedString>
+							</controls:FormattedButton.FormattedText>
+						</controls:FormattedButton>
+					</Grid>
+				</ContentView>
+			</Grid>
+		</Grid>
+
+		<controls:InactivityPopup
+			CountdownSeconds="{Binding TimeoutCountdownSeconds}"
+			DismissCommand="{Binding DismissTimeoutCommand}"
+			IsVisible="{Binding IsTimeoutPopupVisible}"
+			NextCustomerCommand="{Binding NextCustomerCommand}"
+			Progress="{Binding TimeoutCountdownProgress}" />
+	</Grid>
+</ContentPage>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <!-- Remove problematic LogoKeyCode references that fail to bind -->
+    <remove-node path="/api/package[@name='com.epson.epos2.printer']/class[@name='Printer']/method[@name='addLogo' and parameter[@type='com.epson.epos2.printer.LogoKeyCode']]" />
+    <remove-node path="/api/package[@name='com.epson.epos2.printer']/class[@name='LFCPrinter']/method[@name='addLogo' and parameter[@type='com.epson.epos2.printer.LogoKeyCode']]" />
+
+    <!-- Remove LogoKeyCode class if it exists but is problematic -->
+    <remove-node path="/api/package[@name='com.epson.epos2.printer']/class[@name='LogoKeyCode']" />
+
+    <!-- Remove firmware downloader related types that have binding issues -->
+    <remove-node path="/api/package[@name='com.epson.epos2.printer']/class[@name='FirmwareDownloader']" />
+    <remove-node path="/api/package[@name='com.epson.epos2.printer']/class[@name='Printer']/class[@name='DownloadFirmwareListMain']" />
+    <remove-node path="/api/package[@name='com.epson.epos2.printer']/class[@name='Printer']/class[@name='UpdateFirmwareMain']" />
+</metadata>

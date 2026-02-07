@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TabletController.SelectAndPay.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:TabletController.SelectAndPay.Pages"
+	Title="TabletController.App"
+	FlyoutBehavior="Disabled"
+	Shell.NavBarIsVisible="False">
+
+	<ShellContent
+		Title="Home"
+		ContentTemplate="{DataTemplate pages:IdlePage}"
+		Route="idle" />
+
+	<ShellContent
+		Title="Browse"
+		ContentTemplate="{DataTemplate pages:ProductListPage}"
+		Route="productList" />
+
+	<ShellContent
+		Title="Product Detail"
+		ContentTemplate="{DataTemplate pages:ProductDetailPage}"
+		Route="productDetail" />
+
+	<ShellContent
+		Title="Payment"
+		ContentTemplate="{DataTemplate pages:PaymentPage}"
+		Route="payment" />
+
+	<ShellContent
+		Title="Thank You"
+		ContentTemplate="{DataTemplate pages:ThankYouPage}"
+		Route="thankYou" />
+
+	<ShellContent
+		Title="Receipt"
+		ContentTemplate="{DataTemplate pages:ReceiptPage}"
+		Route="receipt" />
+
+</Shell>

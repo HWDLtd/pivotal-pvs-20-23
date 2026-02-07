@@ -1,0 +1,164 @@
+{
+  "versionCode": 1,
+  "categories": [
+    {
+      "categoryId": 1,
+      "categoryName": "Whiskey",
+      "order": 1
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "Gin",
+      "order": 2
+    }
+  ],
+  "products": [
+    {
+      "productId": 1,
+      "name": "Winter's Gold Highland Single Malt Whisky 70cl",
+      "shortDescription": "A smooth, honeyed Highland single malt with gentle peat, warming spice, and a surprisingly luxurious \"from the freezer\" serve",
+      "longDescription": "Winter's Gold is an indulgent Highland single malt designed for cosy evenings and unhurried pours. Distilled in Scotland's highest and coldest reaches, it balances malty sweetness with a soft, smoky warmth, bringing together honeyed richness, heather, and a touch of peat. On the palate you'll find comforting, smooth texture alongside a bright thread of ripe autumn fruit that keeps everything lively rather than heavy. The finish lingers with gentle spice and a rounded warmth that feels made for winter. True to its name, it's best enjoyed straight from the freezer, which accentuates its silkiness and makes each sip feel extra clean and crisp. Whether you're treating yourself or choosing a gift for a whisky fan, Winter's Gold delivers an approachable single malt that still feels special.",
+      "highlights": "Highland single malt with honeyed sweetness and gentle peat\r\nSmooth, rich mouthfeel with warming spice\r\nBalanced by ripe autumn-fruit tartness\r\nBest served straight from the freezer for a crisp, silky sip\r\nComforting smoky finish without overpowering intensity\r\nCrafted to showcase heather-and-peat character\r\nIdeal gift for whisky lovers and winter occasions",
+      "price": 39.99,
+      "imageUrl": "europroduct_catalogue_spirits1.png",
+      "categoryId": 1,
+      "collectionCode": "8992",
+      "barcode": "5010210009",
+      "lockerDetails": {
+        "reedSwitchArrayNumber": 1,
+        "latchArrayNumber": 0,
+        "lockerDisplayName": "Locker 2",
+        "drawerDisplayName": "Drawer 1"
+      }
+    },
+    {
+      "productId": 2,
+      "name": "Highland Peat Reserve Whisky 70cl",
+      "shortDescription": "A bold Highland-style single malt with fragrant peat smoke, toasted oak, and a long, peppery finish",
+      "longDescription": "Highland Peat Reserve is made for drinkers who like their whisky with a little storm cloud in the glass. It opens with aromatic peat smoke and charred oak, then settles into layers of caramel, dark honey, and a gentle dried-fruit sweetness. The palate is warming and structured, with a malty backbone that carries notes of toasted nuts, black pepper, and a hint of sea-salt freshness that keeps the smoke feeling lifted rather than heavy. As it lingers, the finish turns slightly spicy and earthy, leaving a satisfying glow that invites another sip. Enjoy it neat to appreciate the balance, add a splash of water to soften the smoke and reveal sweetness, or pair it with dark chocolate for a seriously comforting match. A great bottle for gifting when you want something with character.",
+      "highlights": "Bold Highland-style single malt with aromatic peat smoke\r\nNotes of toasted oak, dark honey, and caramel sweetness\r\nWarming spice with black pepper and earthy depth\r\nBalanced smoke that stays smooth, not harsh\r\nEnjoy neat, with water, or over a single large ice cube\r\nLong, peppery finish with lingering richness\r\nGreat for peat lovers and confident gifting",
+      "price": 39.99,
+      "imageUrl": "bottle_amber_gold.png",
+      "categoryId": 1,
+      "collectionCode": "6179",
+      "barcode": "",
+      "lockerDetails": {
+        "reedSwitchArrayNumber": 1,
+        "latchArrayNumber": 0,
+        "lockerDisplayName": "Locker 2",
+        "drawerDisplayName": "Drawer 1"
+      }
+    },
+    {
+      "productId": 3,
+      "name": "Highland Sherry Cask Whisky 70cl",
+      "shortDescription": "A rich, smooth single malt with sherried fruit, warm baking spice, and a velvety finish",
+      "longDescription": "Highland Sherry Cask is a plush, dessert-leaning single malt that brings warmth and depth without losing elegance. Matured for a fuller, fruit-forward character, it offers aromas of raisin, orange peel, and soft oak. The first sip is smooth and rounded, combining malty sweetness with dark fruit, toffee, and a gentle wave of cinnamon and nutmeg. As it develops, you'll notice hints of toasted almond and a subtle cocoa note that gives the whisky a refined, lingering richness. It's a brilliant after-dinner pour, especially alongside spiced biscuits, dried fruit, or a square of milk chocolate. Serve it neat for the full velvety texture, or add a tiny splash of water to open up the fruit and spice. Approachable, indulgent, and quietly impressive.",
+      "highlights": "Single malt with rich sherry-cask influence\r\nNotes of raisin, orange peel, toffee, and soft oak\r\nWarm baking spices: cinnamon and nutmeg\r\nVelvety mouthfeel with a rounded, smooth finish\r\nSubtle cocoa and toasted almond complexity\r\nIdeal as an after-dinner whisky or gifting option\r\nEnjoy neat or with a splash of water to open aromas",
+      "price": 42.99,
+      "imageUrl": "bottle_pale_yellow.png",
+      "categoryId": 1,
+      "collectionCode": "8150",
+      "barcode": "",
+      "lockerDetails": {
+        "reedSwitchArrayNumber": 1,
+        "latchArrayNumber": 0,
+        "lockerDisplayName": "Locker 2",
+        "drawerDisplayName": "Drawer 1"
+      }
+    },
+    {
+      "productId": 4,
+      "name": "Highland Honey & Oak Whisky 70cl",
+      "shortDescription": "A smooth, easy-drinking single malt with honeyed sweetness, vanilla oak, and a soft, warming glow",
+      "longDescription": "Highland Honey & Oak is the kind of whisky that feels instantly welcoming: smooth, gently sweet, and made for relaxed sipping. The nose leans into golden honey, vanilla, and fresh oak, with a light floral lift that keeps it bright. On the palate, malty sweetness meets creamy toffee and soft spice, followed by a clean oak note that adds structure without bitterness. The finish is warm and mellow, with lingering vanilla and a faint hint of orchard fruit that makes it surprisingly moreish. It's ideal for those who prefer a softer style, but it still has enough depth to keep seasoned whisky drinkers interested. Serve neat for an easy pour, over ice for a lighter, summery take, or with a splash of water to bring out the honeyed notes. A great \"house whisky\" that also gifts well.",
+      "highlights": "Smooth, approachable single malt whisky\r\nHoney, vanilla, and creamy toffee notes\r\nGentle oak character with soft warming spice\r\nLight floral and orchard-fruit hints for balance\r\nMellow, comforting finish with lingering sweetness\r\nEasy to enjoy neat, with ice, or with water\r\nIdeal for newcomers and a reliable gifting bottle",
+      "price": 38.99,
+      "imageUrl": "bottle_ruby.png",
+      "categoryId": 1,
+      "collectionCode": "9524",
+      "barcode": "",
+      "lockerDetails": {
+        "reedSwitchArrayNumber": 1,
+        "latchArrayNumber": 0,
+        "lockerDisplayName": "Locker 2",
+        "drawerDisplayName": "Drawer 1"
+      }
+    },
+    {
+      "productId": 5,
+      "name": "Highland Heather Gin 70cl",
+      "shortDescription": "A crisp, refreshing small-batch gin with citrus lift, subtle spice, and floral notes that shines in a G&T or Gimlet.",
+      "longDescription": "Highland Heather Gin is a bright, modern take on a classic dry style: clean juniper structure, a fresh citrus snap, and a gently floral finish that keeps it effortlessly drinkable. Crafted in small batches using a carefully selected blend of botanicals, it layers subtle spice from pink peppercorns with the zing of lime peel for a taste that's crisp, balanced, and intensely refreshing. It's a versatile bottle that plays beautifully in simple serves like a Gin & Tonic, where the citrus and floral notes pop, and it also elevates cocktails such as a Gimlet with a lively, aromatic edge. Presented in a bespoke, award-winning 70cl bottle, it feels premium from shelf to serve. Whether you're stocking the bar cart or buying for a gin lover, it's a reliable crowd-pleaser with real character.",
+      "highlights": "Crisp, well-balanced dry-style gin with citrus, spice, and floral notes\r\nSmall-batch crafted from a curated botanical blend\r\nJuniper-led profile with fresh lime peel lift\r\nSubtle pink peppercorn spice adds complexity\r\nPerfect for Gin & Tonic, Gimlet, and easy mixed drinks\r\nIntensely refreshing finish, great with premium tonic\r\nPremium bespoke 70cl bottle design\r\nIdeal gift choice for birthdays, Christmas, Mother's Day, and more",
+      "price": 39.99,
+      "imageUrl": "europroduct_catalogue_spirits2.png",
+      "categoryId": 2,
+      "collectionCode": "3503",
+      "barcode": "5010210012",
+      "lockerDetails": {
+        "reedSwitchArrayNumber": 1,
+        "latchArrayNumber": 0,
+        "lockerDisplayName": "Locker 2",
+        "drawerDisplayName": "Drawer 1"
+      }
+    },
+    {
+      "productId": 6,
+      "name": "Coastal Citrus Gin 70cl",
+      "shortDescription": "A bright, zesty gin with crisp juniper, lively citrus peel, and a clean, refreshing finish",
+      "longDescription": "Coastal Citrus Gin is a sunshine-forward pour built around classic juniper and an energetic burst of citrus. Fresh lime and orange peel lead the way, backed by a subtle herbal lift that keeps the flavour crisp and balanced rather than sweet. On the palate it's clean and lively, with a gentle spice note that gives structure and a refreshing, mouthwatering finish that feels made for a long Gin & Tonic. It shines with a premium tonic, plenty of ice, and a slice of grapefruit or lime, but it's equally at home in a Tom Collins or a simple spritz-style serve. Crafted in small batches for consistency and clarity of flavour, this is an easy crowd-pleaser that still feels premium. Ideal for summer gatherings, gifting, or upgrading the everyday G&T.",
+      "highlights": "Juniper-led gin with bright lime and orange peel\r\nCrisp, refreshing profile with a clean finish\r\nSubtle herbal lift for balance (not overly sweet)\r\nPerfect for Gin & Tonic and Tom Collins\r\nSmall-batch crafted for clarity and consistency\r\nServe with premium tonic, citrus garnish, and lots of ice\r\nGreat gifting option for citrus-gin fans",
+      "price": 36.99,
+      "imageUrl": "bottle_sapphire.png",
+      "categoryId": 2,
+      "collectionCode": "3446",
+      "barcode": "",
+      "lockerDetails": {
+        "reedSwitchArrayNumber": 1,
+        "latchArrayNumber": 0,
+        "lockerDisplayName": "Locker 2",
+        "drawerDisplayName": "Drawer 1"
+      }
+    },
+    {
+      "productId": 7,
+      "name": "Heather & Honey Botanical Gin 70cl",
+      "shortDescription": "A smooth botanical gin with floral heather notes, soft sweetness, and a gently aromatic finish",
+      "longDescription": "Heather & Honey Botanical Gin brings a softer, more aromatic twist to a classic dry style. Juniper provides the backbone, while floral botanicals introduce a delicate heather-like fragrance and a rounded, subtly sweet character. The palate is smooth and balanced: light citrus brightness up front, then gentle spice and a mellow finish that lingers with a warm, botanical perfume. It's a brilliant choice for those who like their gin elegant rather than sharp, and it mixes beautifully with tonic or soda without losing its aroma. Try it in a G&T with a lemon twist, or in a Bees Knees style cocktail for an extra lift of citrus and sweetness. Crafted in small batches, it's a versatile bottle that feels special enough for gifting, but friendly enough for everyday pours.",
+      "highlights": "Juniper-led gin with floral, heather-style botanicals\r\nSmooth, rounded profile with subtle sweetness\r\nLight citrus lift with gentle spice underneath\r\nAromatic finish that stays elegant and balanced\r\nGreat in a G&T, soda serve, or Bees Knees-style cocktail\r\nSmall-batch crafted for consistent flavour\r\nIdeal gift for fans of softer, floral gins",
+      "price": 37.99,
+      "imageUrl": "bottle_violet.png",
+      "categoryId": 2,
+      "collectionCode": "8487",
+      "barcode": "",
+      "lockerDetails": {
+        "reedSwitchArrayNumber": 1,
+        "latchArrayNumber": 0,
+        "lockerDisplayName": "Locker 2",
+        "drawerDisplayName": "Drawer 1"
+      }
+    },
+    {
+      "productId": 8,
+      "name": "Spiced Winter Gin 70cl",
+      "shortDescription": "A warming spiced gin with juniper, citrus, and cosy notes of pepper and aromatic botanicals",
+      "longDescription": "Spiced Winter Gin is designed for colder nights and richer serves, pairing classic juniper with a warming spice profile and a bright citrus edge. Expect a crisp opening, followed by subtle peppery warmth and aromatic botanicals that give depth without turning the gin into a syrupy \"Christmas\" flavour bomb. The result is balanced and versatile: it works in a traditional G&T, but really comes alive in a bramble, a gin sour, or with ginger ale and a squeeze of lime. Served over ice with orange peel, it's both refreshing and comforting, with a finish that lingers gently rather than clinging. Crafted in small batches, it's an easy way to add seasonal character to a home bar, and it makes a smart gift when you want something a little different from the usual London dry.",
+      "highlights": "Juniper-led gin with warming spice and citrus lift\r\nPeppery notes add depth without overpowering\r\nBalanced profile suitable for classic and seasonal serves\r\nGreat in G&T, gin sour, bramble, or with ginger ale\r\nServe with orange peel or lime for a bright finish\r\nSmall-batch crafted for consistent character\r\nIdeal autumn/winter gifting bottle",
+      "price": 37.99,
+      "imageUrl": "bottle_emerald.png",
+      "categoryId": 2,
+      "collectionCode": "3967",
+      "barcode": "",
+      "lockerDetails": {
+        "reedSwitchArrayNumber": 1,
+        "latchArrayNumber": 0,
+        "lockerDisplayName": "Locker 2",
+        "drawerDisplayName": "Drawer 1"
+      }
+    }
+  ],
+  "adminCodes": [
+    "12345"
+  ]
+}

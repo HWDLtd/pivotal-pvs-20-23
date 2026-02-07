@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.SelectAndPay.Pages.IdlePage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:viewModels="clr-namespace:TabletController.SelectAndPay.ViewModels"
+	x:DataType="viewModels:IdleViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid Padding="0" RowDefinitions="Auto,*,Auto">
+		<Border
+			Grid.Row="0"
+			Padding="40,15"
+			BackgroundColor="{StaticResource Primary}">
+			<Image
+				HorizontalOptions="Start"
+				Source="logo.svg"
+				Style="{StaticResource LogoLarge}" />
+		</Border>
+
+		<VerticalStackLayout
+			Grid.Row="1"
+			Padding="60"
+			VerticalOptions="Start">
+
+			<Label
+				Margin="-10,0,0,0"
+				HorizontalOptions="Start"
+				Style="{StaticResource HeroTitle}"
+				Text="Hello." />
+
+			<VerticalStackLayout HorizontalOptions="Start" Spacing="0">
+				<Label Style="{StaticResource MainTitle}" Text="Scan a product's" />
+				<Label Style="{StaticResource MainTitle}" Text="QR code or select" />
+				<Label HorizontalOptions="Start" Style="{StaticResource MainTitle}">
+					<Label.FormattedText>
+						<FormattedString>
+							<Span Style="{StaticResource MainTitleBold}" Text="browse" />
+							<Span Style="{StaticResource MainTitle}" Text=" to start." />
+						</FormattedString>
+					</Label.FormattedText>
+				</Label>
+			</VerticalStackLayout>
+		</VerticalStackLayout>
+
+		<VerticalStackLayout
+			Grid.Row="2"
+			Padding="60,50"
+			VerticalOptions="End"
+			Spacing="50">
+			<Button
+				WidthRequest="450"
+				Padding="25"
+				HorizontalOptions="Start"
+				Command="{Binding BrowseCommand}"
+				FontSize="{StaticResource TitleFontSize}"
+				Style="{StaticResource PrimaryButtonStyle}"
+				Text="Browse" />
+
+			<HorizontalStackLayout VerticalOptions="Start" Spacing="15">
+				<Image
+					x:Name="ArrowsImage"
+					HeightRequest="80"
+					Source="arrows.svg" />
+				<Label
+					x:Name="ScanQrLabel"
+					VerticalOptions="Center"
+					Style="{StaticResource LargeText}"
+					Text="Scan QR code here" />
+			</HorizontalStackLayout>
+		</VerticalStackLayout>
+	</Grid>
+</ContentPage>

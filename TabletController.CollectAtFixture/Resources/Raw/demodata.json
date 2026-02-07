@@ -1,0 +1,167 @@
+{
+	"versionCode": 1,
+	"categories": [
+		{
+			"categoryId": 1,
+			"categoryName": "Toothbrushes",
+			"order": 1
+		},
+		{
+			"categoryId": 2,
+			"categoryName": "Men's Grooming",
+			"order": 2
+		}
+	],
+	"products": [
+		{
+			"productId": 1,
+			"name": "Oral-B Pro Series 3 Electric Toothbrush",
+			"shortDescription": "Designed to promote optimal oral health.",
+			"longDescription": "The Oral-B Pro Series 3 Black Electric Toothbrush is an innovative product from the #1 brand used by dentists worldwide. Designed to promote optimal oral health, this electric toothbrush is engineered to clean more effectively than a standard manual toothbrush, whilst ensuring a gentle brushing experience. The package also includes a travel case and an additional toothbrush head for seamless use on the go. Professional timer for recommended brushing duration of 2 minutes, divided into 4 quadrants of 30-second intervals. Removes up to 100% more plaque than a standard manual toothbrush. 360 gum pressure control technology that reduces brushing speed and alerts user when brushing too hard. Helps whiten teeth from the first day of brushing by removing surface stains. comes with an extra toothbrush head and a travel case.",
+			"highlights": "Remove Up To 100% More Plaque Even In Hard-to-reach Areas For Healthier Gums (Vs. A Manual Toothbrush) With Oral-b's Deep-cleaning 3in1 Technology\r\nProtect Your Gums With The Special Sensitive Cleaning Mode And 360⁰ Visible Gum Pressure Control That Lights Up When Brushing Too Hard\r\nMaximise Cleaning Performance With 3 Easy-to-use Cleaning Modes + A Handle-integrated Quadrant Timer That Alerts You Every 30 Seconds To Change Your Brushing Zone\r\nPersonalise Your Clean With Oral-b Brush Heads Available For Purchase For Your Individual Needs: E.g., Deep Clean, Gentle Clean, Whitening\r\nOral-b Round Brush Heads Reach Where Rectangular Manual Brushes Don't. Experience A Better Clean From The #1 Brand Most Used By Dentists Worldwide\r\nBenefit From Oral-b's Upgraded Battery Technology (Vs. Oral-b Vitality). With Led Charge Indicator That Signals When You Need To Charge",
+			"price": 74.33,
+			"imageUrl": "oral_b_pro_series_3.png",
+			"categoryId": 1,
+			"collectionCode": "5762",
+			"barcode": "5010108754",
+			"lockerDetails": {
+				"reedSwitchArrayNumber": 1,
+				"latchArrayNumber": 0,
+				"lockerDisplayName": "Locker 2",
+				"drawerDisplayName": "Drawer 1"
+			}
+		},
+		{
+			"productId": 2,
+			"name": "Oral-B iO5 Electric Toothbrush",
+			"shortDescription": "ORAL-B'S MOST ADVANCED TECHNOLOGY for 100% more plaque removal in just 1 week",
+			"longDescription": "The iO 10 electric toothbrush with the revolutionary iO Sense smart charger personalises your brushing with real-time feedback, guiding you for perfect coverage, brushing time and brushing pressure for a delightfully effortless clean. It combines gentle micro-vibrations with a unique dentist-inspired round brush head for the feel of a professional purifying clean every day. Replace your Oral-B iO toothbrush head every 3 months for the best results.",
+			"highlights": "Oral-B's BEST EVER CLEAN with REVOLUTIONARY iO TECHNOLOGY for a professional purifying clean feeling & gentle brushing experience\r\nCombines the unique round brush head from Oral-B with gentle micro-vibrations for a fresh, clean mouthfeel and 100% healthier gums in one week vs. a regular manual toothbrush\r\n5 BRUSHING MODES to personalise your brushing: Daily Clean, Intense Clean, Whitening, Sensitive, Super Sensitive\r\nARTIFICIAL INTELLIGENCE recognizes your brushing style and guides you to cover all your teeth, so you never miss a spot\r\nSMART PRESSURE SENSOR signals red, white or green to alert you whether you're brushing too hard, too softly or with just the right amount of pressure\r\nPlease note: This item includes a 2-pin charger, Adapter not include",
+			"price": 371.11,
+			"imageUrl": "oralb_io10.png",
+			"categoryId": 1,
+			"collectionCode": "7817",
+			"barcode": "",
+			"lockerDetails": {
+				"reedSwitchArrayNumber": 1,
+				"latchArrayNumber": 0,
+				"lockerDisplayName": "Locker 2",
+				"drawerDisplayName": "Drawer 1"
+			}
+		},
+		{
+			"productId": 3,
+			"name": "Oral-B Pro 3 Electric Toothbrush",
+			"shortDescription": "Brighten your pearly whites with the Oral-B Pro 3000 Cross Action Electric Toothbrush",
+			"longDescription": "Experience Oral-B Pro 3 from the #1 brand used by dentists worldwide. The sleek handle of the Pro 3 electric toothbrush helps you brush like your dentist recommends: It helps you brush for 2 minutes with the professional timer and it notifies you every 30 seconds to change the area your are brushing. While you are just moving the brush around your mouth, Oral-B's unique round head does all the rest. It removes up to 100% more plaque than a standard manual toothbrush for healthier gums and it starts making your smile whiter as of the first day of brushing by removing surface stains. Not only this, but the toothbrush helps you protect your delicate gums with the 360° gum pressure control technology that reduces brushing speed and alerts you to be gentler if you brush too hard. Oral-B Pro 3 is the must have brush for everyone who wants to switch to an electric toothbrush and improve their oral health.",
+			"highlights": "Professional timer for recommended brushing duration of 2 minutes, divided into 4 quadrants of 30-second intervals\r\nRemoves up to 100% more plaque than a standard manual toothbrush\r\n360 ? gum pressure control technology that reduces brushing speed and alerts user when brushing too hard\r\nHelps whiten teeth from the first day of brushing by removing surface stains\r\nComes with an extra toothbrush head and a travel cas",
+			"price": 40.27,
+			"imageUrl": "oral_b_pro_3.png",
+			"categoryId": 1,
+			"collectionCode": "1602",
+			"barcode": "",
+			"lockerDetails": {
+				"reedSwitchArrayNumber": 1,
+				"latchArrayNumber": 0,
+				"lockerDisplayName": "Locker 2",
+				"drawerDisplayName": "Drawer 1"
+			}
+		},
+		{
+			"productId": 4,
+			"name": "Oral-B iO 4 Lavender Electric Toothbrush",
+			"shortDescription": "Achieve healthier gums in just 1 week with this top-of-the-line electric toothbrush",
+			"longDescription": "The Oral-B iO 4 Lavender Electric Toothbrush is a top-of-the-line oral hygiene product that blends a dentist-inspired round brush head with micro-vibrating bristles, offering an at-home professional cleaning experience for your teeth. The package comes with 2 additional toothbrush heads.\r\n\r\nThe resemblance with dentist tools doesn't end with the brush head- it is also equipped with advanced technology that helps maintain the health of your gums. The toothbrush itself bleeds simplicity, conveying elegance with a striking lavender shade.",
+			"highlights": "Oral-B's most advanced technology, assisting in removing 100% more plaque and reaching up to 160% between the teeth when compared with a manual toothbrush\r\niO Pressure Sensor to ensure proper amount of pressure is applied while brushing\r\nFour different cleaning modes for personalised brushing: Daily Clean, Sensitive, Super-Sensitive, and Whitening\r\nAn iO LightRing Timer celebrating the dentist-recommended brushing time of 2 minutes\r\nA long-lasting charge provided by its Lithium-ion batter",
+			"price": 276.53,
+			"imageUrl": "oral_b_io_4.png",
+			"categoryId": 1,
+			"collectionCode": "3611",
+			"barcode": "",
+			"lockerDetails": {
+				"reedSwitchArrayNumber": 1,
+				"latchArrayNumber": 0,
+				"lockerDisplayName": "Locker 2",
+				"drawerDisplayName": "Drawer 1"
+			}
+		},
+		{
+			"productId": 5,
+			"name": "Braun Body Groomer 5",
+			"shortDescription": "Minimise nicks and cuts with SkinGuard technology.",
+			"longDescription": "Get comfortable full body grooming with the Braun Body Groomer 5. This body groomer for men is made with SkinShield technology to protect skin in even the most sensitive areas—so you can manscape and body groom anywhere with full confidence. Designed for gentleness with the Sensitive Comb, preventing skin from coming into contact with the blade. This body grooming tool has a wide cutting area, to capture and cut more hair in every stroke*—so you can get your look in fewer passes. *vs previous Braun trimmers Box includes: 1x Body groomer; 1x Sliding comb; 1x Sensitive comb; 1x Soft bag; 1x Smart plug charger; 1x User manual",
+			"highlights": "Ultimate gentleness: Braun Body Groomer 3 for men protects skin even in the most sensitive areas. Manscape and body groom anywhere\r\nPrecise safe closeness: with SkinShield technology for a gentle and accurate trim\r\nDesigned for unparalleled comfort: comes with the attachable Sensitive Comb, which prevents skin from coming into contact with the blade\r\nSharper. Faster. More efficient: This men's body groomer is made with a wider cutting area—capturing and cutting more hair in every stroke (vs. previous Braun trimmers)\r\nAdvanced German engineering: 100% waterproof, with a powerful 100-minute runtime Li-Ion battery",
+			"price": 59.76,
+			"imageUrl": "braun_groomer5.png",
+			"categoryId": 2,
+			"collectionCode": "1421",
+			"barcode": "5010102345",
+			"lockerDetails": {
+				"reedSwitchArrayNumber": 1,
+				"latchArrayNumber": 0,
+				"lockerDisplayName": "Locker 2",
+				"drawerDisplayName": "Drawer 1"
+			}
+		},
+		{
+			"productId": 6,
+			"name": "Braun Series 7 Styling Kit",
+			"shortDescription": "Shave, Style And Trim. Get The Look You Want!",
+			"longDescription": "Groom from head to toe using the Braun All-In-One Style Kit Series 7. Grooming kit made for beard, hair, details and manscaping. With ultra sharp metal blade, AutoSense technology and a 100-minute runtime.",
+			"highlights": "Curated tools for beard, ear & nose trimming, hair clipping and manscaping your whole body\r\nYour style, effortlessly: the ultra sharp metal blade is efficient for fast grooming all over\r\nAutoSense technology adapts to your hair's density for incredible results with any hair type, length and thickness\r\nBuilt to last: this grooming kit for men has a powerful Li-Ion battery with 100-minute cordless runtime and is 100% waterproof\r\nThis grooming kit for men includes a case and charging stand for bathroom storage",
+			"price": 57.60,
+			"imageUrl": "brauns7kit.png",
+			"categoryId": 2,
+			"collectionCode": "3980",
+			"barcode": "",
+			"lockerDetails": {
+				"reedSwitchArrayNumber": 1,
+				"latchArrayNumber": 0,
+				"lockerDisplayName": "Locker 2",
+				"drawerDisplayName": "Drawer 1"
+			}
+		},
+		{
+			"productId": 7,
+			"name": "Braun Series 5 6-in-1 grooming Set",
+			"shortDescription": "The 6-in-1 styling set from Braun for face, head and body",
+			"longDescription": "Part of the wider range of Braun all-in-one trimmers, the Braun All-in-One Style Kit Series 5 AIO5520 comes with numerous accessories and extras to cover all your grooming needs. With 120 minutes of runtime and a quick, five-minute charge enough for most trims, it offers accurate and efficient trims. Designed in Germany for use all over the body, the AIO5520 is tough on hair and gentle on skin.",
+			"highlights": "The 6-in-1 styling set from Braun for beard and facial hair removal: beard trimmer, body groomer, hair clippers in one - selected tools for beard, precise shaving and haircut at home\r\nEffortless styling: The ultra-sharp blade is efficient in every stroke, even in hard-to-reach areas, ensures great results and allows beard, face and head hair to be styled comfortably\r\nEffortless styling, no matter the length: Great styling results with fixed comb attachments (1 and 3 mm) and 2 sliding comb attachments (3 — 21 mm)\r\nReady to use: This body care set for men contains a powerful NiMH battery with 50 minutes of wireless run time\r\nEasy cleaning: The device has washable trimmer heads and comb attachments as well as a cleaning brush\r\nWith a 5-year warranty (the terms and conditions on the Braun Website)",
+			"price": 46.08,
+			"imageUrl": "braun6in1.png",
+			"categoryId": 2,
+			"collectionCode": "4730",
+			"barcode": "",
+			"lockerDetails": {
+				"reedSwitchArrayNumber": 1,
+				"latchArrayNumber": 0,
+				"lockerDisplayName": "Locker 2",
+				"drawerDisplayName": "Drawer 1"
+			}
+		},
+		{
+			"productId": 8,
+			"name": "Braun Series 9 PRO+ Electric Shaver",
+			"shortDescription": "Wet & Dry Razor for Men with 5+1 Ultra Thin Precision Blades",
+			"longDescription": "Braun Series 9 PRO+ electric shaver designed for men to achieve perfect closeness and skin protection. Ultra Thin Precision Blades deliver the ultimate shave. 5+1 Technology synchronizes perfectly across Direct&Cut Blade, ProTrimmer, skin-skimming OptiFoil, protective SkinGuard and titanium-coated ProLift Blade. Pro SensoAdapt analyzes beard density at 300x/sec and automatically adjusts shaving power. Includes the 6in1 SmartCare Center, optimized by AutoSelect program, cleans, protects blade lifetime, dries, charges and maintains shaver performance. The Series 9 PRO+ electric razor for men is 100% waterproof. Made in Germany.",
+			"highlights": "Suitable for beard and head only\r\nFoil system\r\nFor wet and dry use\r\nRechargeable battery & mains powered\r\n1 hour charge time for 60 minutes usage\r\n5 minutes quick-charge time to provide enough power for one shave\r\nBatteries required 1 x Li-Ion (included)\r\nCordless only use\r\n4 attachments: 1 X Travel case, 1 X Charger, 1 X Cleaning brush, 1 X Shaver care cartridge\r\nPop-up trimmer - perfect for sideburns and moustache\r\nFully washable",
+			"price": 305.32,
+			"imageUrl": "braunseries9.png",
+			"categoryId": 2,
+			"collectionCode": "6799",
+			"barcode": "",
+			"lockerDetails": {
+				"reedSwitchArrayNumber": 1,
+				"latchArrayNumber": 0,
+				"lockerDisplayName": "Locker 2",
+				"drawerDisplayName": "Drawer 1"
+			}
+		}
+	],
+	"locker": {
+		"ipAddress": "10.202.61.52",
+		"port": 5000,
+		"unitId": 1,
+		"invertOpenClosed": false
+	}
+}

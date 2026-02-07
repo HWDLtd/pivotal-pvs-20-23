@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	x:Class="TabletController.Collect.Pages.JustAMomentPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:controls="clr-namespace:TabletController.Shared.Controls;assembly=TabletController.Shared"
+	xmlns:viewModels="clr-namespace:TabletController.Collect.ViewModels"
+	x:DataType="viewModels:JustAMomentViewModel"
+	BackgroundColor="{StaticResource BackgroundPrimary}">
+
+	<Grid Padding="0" RowDefinitions="Auto,*,Auto">
+		<controls:Header Grid.Row="0" />
+
+
+
+		<ScrollView Grid.Row="1">
+			<VerticalStackLayout Padding="60,0" Spacing="20">
+				<Label
+					Margin="-10,0,0,0"
+					LineBreakMode="WordWrap"
+					LineHeight="0.9"
+					Style="{StaticResource HeroTitleButALilSmaller}"
+					Text="Just a      moment." />
+
+				<Label
+					Margin="0,20,0,0"
+					Style="{StaticResource LargeText}"
+					Text="We're on our way to verify this" />
+				<Label Style="{StaticResource LargeText}" Text="purchase." />
+			</VerticalStackLayout>
+		</ScrollView>
+
+		<Grid Grid.Row="2" RowDefinitions="Auto,*">
+			<BoxView Style="{StaticResource FooterBorder}" />
+			<ContentView Grid.Row="1" Style="{StaticResource FooterContent}">
+				<Grid ColumnDefinitions="*,*" ColumnSpacing="15">
+					<Button
+						Grid.Column="0"
+						HorizontalOptions="Start"
+						Command="{Binding BackCommand}"
+						Style="{StaticResource SecondaryButtonStyle}"
+						Text="Back" />
+					<Button
+						Grid.Column="1"
+						HorizontalOptions="End"
+						Command="{Binding NextCustomerCommand}"
+						Style="{StaticResource SecondaryButtonStyle}"
+						Text="Next customer" />
+				</Grid>
+			</ContentView>
+		</Grid>
+	</Grid>
+</ContentPage>

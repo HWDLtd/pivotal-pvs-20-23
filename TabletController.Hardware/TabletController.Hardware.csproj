@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net9.0-android</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>TabletController.Hardware</RootNamespace>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\TabletController.Core\TabletController.Core.csproj" />
+	</ItemGroup>
+
+	<!-- Android-specific configuration for Java SDK integration -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<AndroidJavaSource Include="Platforms\Android\Java\**\*.java" />
+		<AndroidResource Include="Platforms\Android\Resources\xml\device_filter.xml" />
+		<!-- Epson ePOS2 SDK JAR -->
+		<AndroidLibrary Include="Platforms\Android\Libs\ePOS2.jar" />
+		<!-- Epson ePOS2 native libraries -->
+		<AndroidNativeLibrary Include="Platforms\Android\Libs\arm64-v8a\libepos2.so">
+			<Abi>arm64-v8a</Abi>
+		</AndroidNativeLibrary>
+		<AndroidNativeLibrary Include="Platforms\Android\Libs\armeabi-v7a\libepos2.so">
+			<Abi>armeabi-v7a</Abi>
+		</AndroidNativeLibrary>
+		<!-- Transform file for binding fixes -->
+		<TransformFile Include="Platforms\Android\Transforms\Metadata.xml" />
+	</ItemGroup>
+
+</Project>

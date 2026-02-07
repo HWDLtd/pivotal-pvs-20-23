@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="TabletController.Shared.Controls.InactivityPopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:TabletController.Shared.Controls">
+
+    <Grid BackgroundColor="#80000000">
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnBackgroundTapped" />
+        </Grid.GestureRecognizers>
+
+        <Border
+	        Padding="75"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            BackgroundColor="{StaticResource White}"
+            StrokeThickness="0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="20" />
+            </Border.StrokeShape>
+
+	        <VerticalStackLayout HorizontalOptions="Center">
+		        <Label
+			        Style="{StaticResource MainTitleBold}"
+			        HorizontalOptions="Center"
+			        Text="Are you still there?"/>
+		        <Label
+			        Style="{StaticResource MainTitle}"
+			        HorizontalOptions="Center"
+					HorizontalTextAlignment="Center"
+			        Text="Touch the screen" />
+		        <Label
+			        Style="{StaticResource MainTitle}"
+			        HorizontalOptions="Center"
+					HorizontalTextAlignment="Center"
+			        Text="to continue" />
+
+		        <VerticalStackLayout Spacing="50" HorizontalOptions="Center" Padding="25">
+			        <controls:CircularProgressIndicator
+				        x:Name="ProgressIndicator"
+				        WidthRequest="240"
+				        HeightRequest="240"
+				        HorizontalOptions="Center"
+				        Progress="{Binding Progress, Source={RelativeSource AncestorType={x:Type controls:InactivityPopup}}}"
+				        ProgressColor="{StaticResource Primary}"
+				        StrokeWidth="24"
+				        Text="{Binding CountdownSeconds, Source={RelativeSource AncestorType={x:Type controls:InactivityPopup}}}"
+				        TextColor="{StaticResource Primary}"
+				        TrackColor="{StaticResource Grey}" />
+
+
+			        <Button
+				        x:Name="NextCustomerButton"
+				        Clicked="OnNextCustomerClicked"
+				        HorizontalOptions="Center"
+				        Style="{StaticResource SecondaryButtonStyle}"
+				        Text="Next customer" />
+		        </VerticalStackLayout>
+			</VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentView>
