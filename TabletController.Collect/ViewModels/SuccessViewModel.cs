@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Plugin.Maui.Audio;
 using TabletController.Shared.ViewModels;
 using TabletController.Shared.Services;
 using TabletController.Shared.Utilities;
@@ -12,6 +13,9 @@ namespace TabletController.Collect.ViewModels
 {
     public class SuccessViewModel : BaseViewModel
     {
+        private const int LockerInputIndex = 0; // Input 0 on the Etd8a12Controller: true = closed, false = open
+        private const int CloseLockerMessageDelaySeconds = 15;
+
         private readonly INavigationService _navigationService;
         private readonly IProductDataService _productDataService;
         private readonly IInactivityTimeoutService _timeoutService;
@@ -21,6 +25,11 @@ namespace TabletController.Collect.ViewModels
         private Order? _order;
         private string _drawerDisplayName = string.Empty;
         private string _lockerDisplayName = string.Empty;
+        private bool _isLockerClosed = true;
+        private bool _showCloseLockerMessage;
+        private CancellationTokenSource? _closeMessageDelayCts;
+        private CancellationTokenSource? _beepBlinkCts;
+        private bool _isMonitoringLocker;
 
         public string DrawerDisplayName
         {
@@ -32,6 +41,24 @@ namespace TabletController.Collect.ViewModels
         {
             get => _lockerDisplayName;
             private set => SetProperty(ref _lockerDisplayName, value);
+        }
+
+        /// <summary>
+        /// True when the locker is closed (input 0 = true). Controls footer button visibility and timeout.
+        /// </summary>
+        public bool IsLockerClosed
+        {
+            get => _isLockerClosed;
+            private set => SetProperty(ref _isLockerClosed, value);
+        }
+
+        /// <summary>
+        /// True when the locker has been open for more than 5 seconds. Shows "Please Close The Locker" message.
+        /// </summary>
+        public bool ShowCloseLockerMessage
+        {
+            get => _showCloseLockerMessage;
+            private set => SetProperty(ref _showCloseLockerMessage, value);
         }
 
         public string? OrderJson
@@ -151,32 +178,215 @@ namespace TabletController.Collect.ViewModels
 
                 var latchArrayNumber = product.LockerDetails.LatchArrayNumber;
 
-                // Step 1: Disable timeout
+                // Step 1: Disable timeout while locker is being operated
                 _timeoutService.SetEnabled(false);
                 System.Diagnostics.Debug.WriteLine($"Locker sequence started: Disabled timeout");
 
-                // Step 2: Pulse the latch port (Collect app doesn't have ReedSwitch, so just pulse directly)
+                // Step 2: Pulse the latch port to unlock
                 try
                 {
-					await _lockerService.PulseLatchAsync(latchArrayNumber).ConfigureAwait(false);
-				} catch(Exception ee)
+                    await _lockerService.PulseLatchAsync(latchArrayNumber).ConfigureAwait(false);
+                }
+                catch (Exception ee)
                 {
-					System.Diagnostics.Debug.WriteLine($"Erro happened:{ee}");
-				}
-       
+                    System.Diagnostics.Debug.WriteLine($"Error happened: {ee}");
+                }
+
                 System.Diagnostics.Debug.WriteLine($"Pulsed latch port {latchArrayNumber}");
 
-                // Step 3: Re-enable timeout
-                System.Diagnostics.Debug.WriteLine("Re-enabling timeout...");
-                _timeoutService.SetEnabled(true);
-                _timeoutService.ResetTimer(); // Also reset the timer to start fresh
-                System.Diagnostics.Debug.WriteLine("Locker sequence completed: Re-enabled timeout and reset timer");
+                // Step 3: Start monitoring the locker state (input 0)
+                // Timeout and footer button are now managed by the locker monitor
+                StartLockerMonitoring();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Failed to trigger locker: {ex.Message}");
                 // Ensure timeout is re-enabled even on error
                 _timeoutService.SetEnabled(true);
+            }
+        }
+
+        private void StartLockerMonitoring()
+        {
+            if (_isMonitoringLocker)
+                return;
+
+            _isMonitoringLocker = true;
+            _lockerService.ReedSwitchStateChanged += OnLockerStateChanged;
+
+            // Check current state immediately
+            UpdateLockerState();
+            System.Diagnostics.Debug.WriteLine("Started locker monitoring on input 0");
+        }
+
+        private void StopLockerMonitoring()
+        {
+            if (!_isMonitoringLocker)
+                return;
+
+            _isMonitoringLocker = false;
+            _lockerService.ReedSwitchStateChanged -= OnLockerStateChanged;
+            _closeMessageDelayCts?.Cancel();
+            _closeMessageDelayCts?.Dispose();
+            _closeMessageDelayCts = null;
+            StopBeepBlinkLoop();
+            System.Diagnostics.Debug.WriteLine("Stopped locker monitoring");
+        }
+
+        private void OnLockerStateChanged(object? sender, ReedSwitchStateChangedEventArgs e)
+        {
+            if (e.ArrayNumber != LockerInputIndex)
+                return;
+
+            System.Diagnostics.Debug.WriteLine($"Locker input {LockerInputIndex} changed: IsOpen={e.IsOpen}");
+
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                UpdateLockerState();
+            });
+        }
+
+        private void UpdateLockerState()
+        {
+            try
+            {
+                var currentStates = _lockerService.GetCurrentInputStates();
+                // Input 0: true = closed, false = open
+                bool isClosed = LockerInputIndex < currentStates.Length && currentStates[LockerInputIndex];
+
+                System.Diagnostics.Debug.WriteLine($"Locker state update: Input[{LockerInputIndex}]={isClosed} (closed={isClosed})");
+
+                if (isClosed)
+                {
+                    OnLockerClosed();
+                }
+                else
+                {
+                    OnLockerOpened();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error reading locker state: {ex.Message}");
+            }
+        }
+
+        private void OnLockerOpened()
+        {
+            IsLockerClosed = false;
+
+            // Disable timeout while locker is open
+            _timeoutService.SetEnabled(false);
+            System.Diagnostics.Debug.WriteLine("Locker opened: Timeout disabled");
+
+            // Cancel any existing delay/beep
+            _closeMessageDelayCts?.Cancel();
+            _closeMessageDelayCts?.Dispose();
+            StopBeepBlinkLoop();
+
+            // Start 5-second delay before showing "Please Close The Locker" message
+            _closeMessageDelayCts = new CancellationTokenSource();
+            var token = _closeMessageDelayCts.Token;
+
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await Task.Delay(TimeSpan.FromSeconds(CloseLockerMessageDelaySeconds), token).ConfigureAwait(false);
+
+                    if (!token.IsCancellationRequested)
+                    {
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            ShowCloseLockerMessage = true;
+                            System.Diagnostics.Debug.WriteLine("Showing 'Please Close The Locker' message");
+                        });
+
+                        // Start the beep + blink loop
+                        StartBeepBlinkLoop();
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    // Locker was closed before the delay elapsed
+                }
+            });
+        }
+
+        private void OnLockerClosed()
+        {
+            // Cancel any pending "close locker" message delay and beep/blink
+            _closeMessageDelayCts?.Cancel();
+            _closeMessageDelayCts?.Dispose();
+            _closeMessageDelayCts = null;
+            StopBeepBlinkLoop();
+
+            IsLockerClosed = true;
+            ShowCloseLockerMessage = false;
+
+            // Re-enable timeout and reset it
+            _timeoutService.SetEnabled(true);
+            _timeoutService.ResetTimer();
+            System.Diagnostics.Debug.WriteLine("Locker closed: Timeout re-enabled, showing Next Customer button");
+        }
+
+        private void StartBeepBlinkLoop()
+        {
+            StopBeepBlinkLoop();
+            _beepBlinkCts = new CancellationTokenSource();
+            var token = _beepBlinkCts.Token;
+
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    while (!token.IsCancellationRequested)
+                    {
+                        // Play beep sound
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            PlayBeepSound();
+                        });
+
+                        // Blink: hide text for 0.5 seconds
+                        MainThread.BeginInvokeOnMainThread(() => ShowCloseLockerMessage = false);
+                        await Task.Delay(500, token).ConfigureAwait(false);
+                        MainThread.BeginInvokeOnMainThread(() => ShowCloseLockerMessage = true);
+
+                        // Wait remaining 4.5 seconds to complete the 5-second cycle
+                        await Task.Delay(4500, token).ConfigureAwait(false);
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    // Loop cancelled - locker was closed
+                }
+            });
+        }
+
+        private void StopBeepBlinkLoop()
+        {
+            _beepBlinkCts?.Cancel();
+            _beepBlinkCts?.Dispose();
+            _beepBlinkCts = null;
+        }
+
+        private async void PlayBeepSound()
+        {
+            try
+            {
+                var stream = await FileSystem.OpenAppPackageFileAsync("beep-09.wav");
+                var player = AudioManager.Current.CreatePlayer(stream);
+                player.PlaybackEnded += (s, e) =>
+                {
+                    player.Dispose();
+                };
+                player.Play();
+                System.Diagnostics.Debug.WriteLine("Played beep-09.wav");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Failed to play beep sound: {ex.Message}");
             }
         }
 
@@ -337,6 +547,7 @@ namespace TabletController.Collect.ViewModels
 
         public override void OnPageDisappearing()
         {
+            StopLockerMonitoring();
             base.OnPageDisappearing();
         }
     }
