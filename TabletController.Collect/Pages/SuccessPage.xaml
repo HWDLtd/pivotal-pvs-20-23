@@ -32,7 +32,8 @@
 							BackgroundColor="{StaticResource Secondary}"
 							StrokeThickness="0"
 							Padding="20,15"
-							Margin="0,5">
+							Margin="0,5"
+							IsVisible="{Binding DrawerDisplayName, Converter={StaticResource IsNotNullOrEmptyConverter}}">
 							<Label
 								TextColor="White"
 								FontSize="{StaticResource SubtitleFontSize}"
@@ -45,10 +46,11 @@
 							BackgroundColor="{StaticResource Secondary}"
 							StrokeThickness="0"
 							Padding="20,15"
-							Margin="0,5">
+							Margin="0,5"
+							IsVisible="{Binding LockerDisplayName, Converter={StaticResource IsNotNullOrEmptyConverter}}">
 							<Label
 								TextColor="White"
-								FontSize="{StaticResource SubtitleFontSize}"
+								FontSize="60"
 								FontFamily="{StaticResource BoldFontFamily}"
 								Text="{Binding LockerDisplayName}"
 								HorizontalOptions="Center" />

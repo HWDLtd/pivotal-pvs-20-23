@@ -300,40 +300,13 @@ namespace TabletController.CollectAtFixture.Services
                 try
                 {
                     var demoData = LoadDemoDataAsync().GetAwaiter().GetResult();
-                    if (demoData.Locker != null)
-                        return demoData.Locker;
+                    return demoData.Locker;
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Failed to load locker configuration from disk: {ex.Message}");
+                    System.Diagnostics.Debug.WriteLine($"Failed to load locker configuration: {ex.Message}");
+                    return null;
                 }
-                
-                // Fallback: read locker configuration directly from bundled app resource
-                try
-                {
-                    System.Diagnostics.Debug.WriteLine("Attempting to load locker configuration from bundled resource...");
-                    using var stream = FileSystem.OpenAppPackageFileAsync("demodata.json").GetAwaiter().GetResult();
-                    using var reader = new StreamReader(stream);
-                    var rawJson = reader.ReadToEnd();
-                    
-                    var options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    
-                    var rawDemoData = JsonSerializer.Deserialize<DemoData>(rawJson, options);
-                    if (rawDemoData?.Locker != null)
-                    {
-                        System.Diagnostics.Debug.WriteLine($"Loaded locker configuration from bundled resource: IP={rawDemoData.Locker.IpAddress}, Port={rawDemoData.Locker.Port}");
-                        return rawDemoData.Locker;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Failed to load locker configuration from bundled resource: {ex.Message}");
-                }
-                
-                return null;
             }
         }
     }

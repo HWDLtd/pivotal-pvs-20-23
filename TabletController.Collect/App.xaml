@@ -3,13 +3,15 @@
 	x:Class="TabletController.Collect.App"
 	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:local="clr-namespace:TabletController.Collect">
+	xmlns:local="clr-namespace:TabletController.Collect"
+	xmlns:converters="clr-namespace:TabletController.Collect.Converters">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<!--  Reference the merged resource dictionary from local Resources folder  -->
 				<ResourceDictionary Source="Resources/Styles/AllResources.xaml" />
 			</ResourceDictionary.MergedDictionaries>
+			<converters:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>
