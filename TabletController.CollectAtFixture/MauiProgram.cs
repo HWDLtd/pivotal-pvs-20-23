@@ -3,7 +3,9 @@ using TabletController.CollectAtFixture.Pages;
 using TabletController.CollectAtFixture.Services;
 using TabletController.CollectAtFixture.ViewModels;
 using TabletController.Core.Interfaces;
+#if ANDROID
 using TabletController.Hardware.Platforms.Android.Services;
+#endif
 using TabletController.Shared.Services;
 using TabletController.Hardware.Services;
 using IInactivityTimeoutService = TabletController.Shared.Services.IInactivityTimeoutService;

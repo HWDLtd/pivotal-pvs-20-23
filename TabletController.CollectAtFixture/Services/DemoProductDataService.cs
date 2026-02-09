@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using TabletController.Core.DTOs;
 using TabletController.Core.Interfaces;
 #if ANDROID
@@ -37,8 +37,9 @@ namespace TabletController.CollectAtFixture.Services
             {
                 try
                 {
-                    // Check and update demo data file if needed
-                    CheckAndUpdateDemoDataFile();
+                    // DISABLED: Local file sync - currently using bundled package resource only.
+                    // To re-enable loading from local filesystem, uncomment the line below:
+                    // CheckAndUpdateDemoDataFile();
                     
                     var demoData = LoadDemoDataAsync().GetAwaiter().GetResult();
                     _categories = demoData.Categories ?? new List<Category>();
@@ -168,38 +169,55 @@ namespace TabletController.CollectAtFixture.Services
 
         private async Task<DemoData> LoadDemoDataAsync()
         {
-            var dataDirectory = GetPublicDataDirectory();
-            var dataFilePath = Path.Combine(dataDirectory, "demodata.json");
+            // DISABLED: Local file loading - currently using bundled package resource only.
+            // To re-enable loading from local filesystem, uncomment the block below and
+            // comment out the bundled resource block.
             
-            System.Diagnostics.Debug.WriteLine($"Looking for demodata.json at: {dataFilePath}");
-            
-            // Read from device file system (can be modified without recompiling)
-            if (File.Exists(dataFilePath))
+            // --- START LOCAL FILE LOADING (DISABLED) ---
+            // var dataDirectory = GetPublicDataDirectory();
+            // var dataFilePath = Path.Combine(dataDirectory, "demodata.json");
+            // 
+            // System.Diagnostics.Debug.WriteLine($"Looking for demodata.json at: {dataFilePath}");
+            // 
+            // if (File.Exists(dataFilePath))
+            // {
+            //     try
+            //     {
+            //         var json = File.ReadAllText(dataFilePath);
+            //         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            //         return JsonSerializer.Deserialize<DemoData>(json, options) ?? new DemoData();
+            //     }
+            //     catch (Exception ex)
+            //     {
+            //         System.Diagnostics.Debug.WriteLine($"Error reading demodata.json: {ex.Message}");
+            //         return new DemoData();
+            //     }
+            // }
+            // 
+            // System.Diagnostics.Debug.WriteLine($"demodata.json not found at: {dataFilePath}");
+            // return new DemoData();
+            // --- END LOCAL FILE LOADING (DISABLED) ---
+
+            // Load from bundled app package resource
+            try
             {
-                try
+                System.Diagnostics.Debug.WriteLine("Loading demodata.json from bundled app package resource");
+                using var stream = await FileSystem.OpenAppPackageFileAsync("demodata.json").ConfigureAwait(false);
+                using var reader = new StreamReader(stream);
+                var json = await reader.ReadToEndAsync().ConfigureAwait(false);
+                
+                var options = new JsonSerializerOptions
                 {
-                    // Use synchronous read to avoid async issues on Android
-                    var json = File.ReadAllText(dataFilePath);
-                    
-                    var options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    
-                    return JsonSerializer.Deserialize<DemoData>(json, options) ?? new DemoData();
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Error reading demodata.json: {ex.Message}");
-                    System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
-                    return new DemoData();
-                }
+                    PropertyNameCaseInsensitive = true
+                };
+                
+                return JsonSerializer.Deserialize<DemoData>(json, options) ?? new DemoData();
             }
-            
-            // File doesn't exist - return empty data
-            System.Diagnostics.Debug.WriteLine($"demodata.json not found at: {dataFilePath}");
-            System.Diagnostics.Debug.WriteLine($"Directory exists: {Directory.Exists(dataDirectory)}");
-            return new DemoData();
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error reading bundled demodata.json: {ex.Message}");
+                return new DemoData();
+            }
         }
 
         private string GetPublicDataDirectory()
@@ -282,13 +300,40 @@ namespace TabletController.CollectAtFixture.Services
                 try
                 {
                     var demoData = LoadDemoDataAsync().GetAwaiter().GetResult();
-                    return demoData.Locker;
+                    if (demoData.Locker != null)
+                        return demoData.Locker;
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Failed to load locker configuration: {ex.Message}");
-                    return null;
+                    System.Diagnostics.Debug.WriteLine($"Failed to load locker configuration from disk: {ex.Message}");
                 }
+                
+                // Fallback: read locker configuration directly from bundled app resource
+                try
+                {
+                    System.Diagnostics.Debug.WriteLine("Attempting to load locker configuration from bundled resource...");
+                    using var stream = FileSystem.OpenAppPackageFileAsync("demodata.json").GetAwaiter().GetResult();
+                    using var reader = new StreamReader(stream);
+                    var rawJson = reader.ReadToEnd();
+                    
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    
+                    var rawDemoData = JsonSerializer.Deserialize<DemoData>(rawJson, options);
+                    if (rawDemoData?.Locker != null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Loaded locker configuration from bundled resource: IP={rawDemoData.Locker.IpAddress}, Port={rawDemoData.Locker.Port}");
+                        return rawDemoData.Locker;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Failed to load locker configuration from bundled resource: {ex.Message}");
+                }
+                
+                return null;
             }
         }
     }

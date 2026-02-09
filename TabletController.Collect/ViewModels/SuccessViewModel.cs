@@ -156,7 +156,14 @@ namespace TabletController.Collect.ViewModels
                 System.Diagnostics.Debug.WriteLine($"Locker sequence started: Disabled timeout");
 
                 // Step 2: Pulse the latch port (Collect app doesn't have ReedSwitch, so just pulse directly)
-                await _lockerService.PulseLatchAsync(latchArrayNumber).ConfigureAwait(false);
+                try
+                {
+					await _lockerService.PulseLatchAsync(latchArrayNumber).ConfigureAwait(false);
+				} catch(Exception ee)
+                {
+					System.Diagnostics.Debug.WriteLine($"Erro happened:{ee}");
+				}
+       
                 System.Diagnostics.Debug.WriteLine($"Pulsed latch port {latchArrayNumber}");
 
                 // Step 3: Re-enable timeout

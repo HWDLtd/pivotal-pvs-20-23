@@ -27,8 +27,8 @@
 			"lockerDetails": {
 				"reedSwitchArrayNumber": 1,
 				"latchArrayNumber": 0,
-				"lockerDisplayName": "Locker 2",
-				"drawerDisplayName": "Drawer 1"
+				"lockerDisplayName": "Locker 1",
+				"drawerDisplayName": ""
 			}
 		},
 		{
@@ -45,8 +45,8 @@
 			"lockerDetails": {
 				"reedSwitchArrayNumber": 1,
 				"latchArrayNumber": 0,
-				"lockerDisplayName": "Locker 2",
-				"drawerDisplayName": "Drawer 1"
+				"lockerDisplayName": "Locker 1",
+				"drawerDisplayName": ""
 			}
 		},
 		{
@@ -63,8 +63,8 @@
 			"lockerDetails": {
 				"reedSwitchArrayNumber": 1,
 				"latchArrayNumber": 0,
-				"lockerDisplayName": "Locker 2",
-				"drawerDisplayName": "Drawer 1"
+				"lockerDisplayName": "Locker 1",
+				"drawerDisplayName": ""
 			}
 		},
 		{
@@ -81,8 +81,8 @@
 			"lockerDetails": {
 				"reedSwitchArrayNumber": 1,
 				"latchArrayNumber": 0,
-				"lockerDisplayName": "Locker 2",
-				"drawerDisplayName": "Drawer 1"
+				"lockerDisplayName": "Locker 1",
+				"drawerDisplayName": ""
 			}
 		},
 		{
@@ -99,8 +99,8 @@
 			"lockerDetails": {
 				"reedSwitchArrayNumber": 1,
 				"latchArrayNumber": 0,
-				"lockerDisplayName": "Locker 2",
-				"drawerDisplayName": "Drawer 1"
+				"lockerDisplayName": "Locker 1",
+				"drawerDisplayName": ""
 			}
 		},
 		{
@@ -117,8 +117,8 @@
 			"lockerDetails": {
 				"reedSwitchArrayNumber": 1,
 				"latchArrayNumber": 0,
-				"lockerDisplayName": "Locker 2",
-				"drawerDisplayName": "Drawer 1"
+				"lockerDisplayName": "Locker 1",
+				"drawerDisplayName": ""
 			}
 		},
 		{
@@ -135,8 +135,8 @@
 			"lockerDetails": {
 				"reedSwitchArrayNumber": 1,
 				"latchArrayNumber": 0,
-				"lockerDisplayName": "Locker 2",
-				"drawerDisplayName": "Drawer 1"
+				"lockerDisplayName": "Locker 1",
+				"drawerDisplayName": ""
 			}
 		},
 		{
@@ -153,8 +153,8 @@
 			"lockerDetails": {
 				"reedSwitchArrayNumber": 1,
 				"latchArrayNumber": 0,
-				"lockerDisplayName": "Locker 2",
-				"drawerDisplayName": "Drawer 1"
+				"lockerDisplayName": "Locker 1",
+				"drawerDisplayName": ""
 			}
 		}
 	],

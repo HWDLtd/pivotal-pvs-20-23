@@ -17,7 +17,7 @@ namespace TabletController.Shared.Services
 
     public class InactivityTimeoutService : IInactivityTimeoutService
     {
-        private const int InactivityTimeoutSeconds = 10;
+        private const int InactivityTimeoutSeconds = 20;
         private const int CountdownDurationSeconds = 10;
         private const int CountdownTickIntervalMs = 50;
 

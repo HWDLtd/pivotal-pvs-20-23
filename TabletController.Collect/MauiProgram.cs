@@ -4,7 +4,9 @@ using TabletController.Collect.ViewModels;
 using TabletController.Core.Interfaces;
 using TabletController.Shared.Services;
 using TabletController.Hardware.Services;
+#if ANDROID
 using TabletController.Hardware.Platforms.Android.Services;
+#endif
 using IInactivityTimeoutService = TabletController.Shared.Services.IInactivityTimeoutService;
 
 namespace TabletController.Collect
