@@ -11,6 +11,8 @@ namespace TabletController.SelectAndPay
         Theme = "@style/Maui.SplashTheme",
         MainLauncher = true,
         LaunchMode = LaunchMode.SingleTop,
+        DirectBootAware = true,
+        ScreenOrientation = ScreenOrientation.SensorPortrait,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize | ConfigChanges.Density)]
     [IntentFilter(new[] { UsbManager.ActionUsbDeviceAttached })]
     [MetaData(UsbManager.ActionUsbDeviceAttached, Resource = "@xml/device_filter")]
@@ -20,7 +22,7 @@ namespace TabletController.SelectAndPay
         {
             base.OnCreate(savedInstanceState);
             SetFullscreenMode();
-            
+
             // Handle USB device attached intent (for automatic permission granting)
             var intent = Intent;
             if (intent != null && UsbManager.ActionUsbDeviceAttached.Equals(intent.Action))
@@ -31,8 +33,6 @@ namespace TabletController.SelectAndPay
                     var usbManager = GetSystemService(UsbService) as UsbManager;
                     if (usbManager != null && usbManager.HasPermission(device))
                     {
-                        // Permission automatically granted via intent filter
-                        // The services will detect this when they check HasPermission()
                         Android.Util.Log.Info("MainActivity", $"USB device attached and permission granted: {device.DeviceName}");
                     }
                 }

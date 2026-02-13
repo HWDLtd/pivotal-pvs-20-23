@@ -1,7 +1,12 @@
 package com.nlscan.nlsdk;
 
 import android.content.Context;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.util.Log;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Bridge class for simplified access to NLDevice scanner functionality from C#.
@@ -9,6 +14,7 @@ import android.util.Log;
  */
 public class NewlandScannerBridge {
     private static final String TAG = "NewlandScannerBridge";
+    private static final int NEWLAND_VID = 0x1EAB;
 
     private NLDeviceStream device;
     private Context context;
@@ -25,8 +31,47 @@ public class NewlandScannerBridge {
     }
 
     public NewlandScannerBridge() {
-        // Create device with USB Composite mode (KBW)
-        device = new NLDevice(NLDeviceStream.DevClass.DEV_COMPOSITE);
+        // Device will be created in open() after auto-detecting the USB mode
+        device = null;
+    }
+
+    /**
+     * Auto-detects the DevClass based on the connected Newland scanner's PID.
+     * PID low byte 0x06 = CDC, 0x10 = POS, 0x22 = Composite.
+     */
+    private NLDeviceStream.DevClass detectDevClass(Context context) {
+        UsbManager usbManager = (UsbManager) context.getSystemService(Context.USB_SERVICE);
+        if (usbManager == null) {
+            Log.w(TAG, "USB Manager not available, defaulting to DEV_COMPOSITE");
+            return NLDeviceStream.DevClass.DEV_COMPOSITE;
+        }
+
+        HashMap<String, UsbDevice> deviceMap = usbManager.getDeviceList();
+        for (Map.Entry<String, UsbDevice> entry : deviceMap.entrySet()) {
+            UsbDevice usbdev = entry.getValue();
+            if (usbdev.getVendorId() != NEWLAND_VID) continue;
+
+            int lpid = usbdev.getProductId() & 0xFF;
+            Log.i(TAG, "Detected Newland device PID=0x" + Integer.toHexString(usbdev.getProductId()) + " (low byte=0x" + Integer.toHexString(lpid) + ")");
+
+            switch (lpid) {
+                case 0x06:
+                    Log.i(TAG, "Auto-detected USB CDC mode");
+                    return NLDeviceStream.DevClass.DEV_CDC;
+                case 0x10:
+                    Log.i(TAG, "Auto-detected USB POS mode");
+                    return NLDeviceStream.DevClass.DEV_POS;
+                case 0x22:
+                    Log.i(TAG, "Auto-detected USB Composite mode");
+                    return NLDeviceStream.DevClass.DEV_COMPOSITE;
+                default:
+                    Log.w(TAG, "Unknown PID low byte 0x" + Integer.toHexString(lpid) + ", defaulting to DEV_COMPOSITE");
+                    return NLDeviceStream.DevClass.DEV_COMPOSITE;
+            }
+        }
+
+        Log.w(TAG, "No Newland device found, defaulting to DEV_COMPOSITE");
+        return NLDeviceStream.DevClass.DEV_COMPOSITE;
     }
 
     /**
@@ -45,6 +90,10 @@ public class NewlandScannerBridge {
         this.context = context;
 
         try {
+            // Auto-detect and create device on each open attempt
+            NLDeviceStream.DevClass devClass = detectDevClass(context);
+            device = new NLDevice(devClass);
+
             boolean result = device.nl_OpenDevice(context, new NLDeviceStream.NLUsbListener() {
                 @Override
                 public void actionUsbPlug(int event) {

@@ -61,7 +61,8 @@
 						Grid.Row="3"
 						Grid.Column="0"
 						Style="{StaticResource Subtitle}"
-						Text="{Binding Product.ShortDescription}" />
+						Text="{Binding Product.ShortDescription}"
+						Margin="0,0,0,40"/>
 
 					<VerticalStackLayout
 						Grid.Row="4"

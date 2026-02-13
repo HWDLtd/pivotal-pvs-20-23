@@ -628,18 +628,22 @@ namespace TabletController.Hardware.Platforms.Android.Services
             _ = ConnectAsync();
         }
 
-        internal void OnUsbDeviceAttached(UsbDevice device)
+        internal async void OnUsbDeviceAttached(UsbDevice device)
         {
             global::Android.Util.Log.Info(Tag, $"USB device attached: VID={device.VendorId}");
             if (device.VendorId == EpsonVendorId && _usbManager != null)
             {
-                if (!_usbManager.HasPermission(device))
+                // Give the Activity intent filter a moment to auto-grant permission
+                await Task.Delay(500);
+
+                if (_usbManager.HasPermission(device))
                 {
-                    _usbManager.RequestPermission(device, _permissionIntent);
+                    _ = ConnectAsync();
                 }
                 else
                 {
-                    _ = ConnectAsync();
+                    global::Android.Util.Log.Info(Tag, "Permission not auto-granted, requesting manually");
+                    _usbManager.RequestPermission(device, _permissionIntent);
                 }
             }
         }

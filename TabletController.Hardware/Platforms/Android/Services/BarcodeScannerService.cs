@@ -284,23 +284,24 @@ namespace TabletController.Hardware.Platforms.Android.Services
             _permissionRequested = false;
         }
 
-        internal void OnUsbDeviceAttached(UsbDevice device)
+        internal async void OnUsbDeviceAttached(UsbDevice device)
         {
             global::Android.Util.Log.Info(Tag, $"USB device attached: {device.DeviceName}");
 
             if (device.VendorId == 0x1EAB && _usbManager != null)
             {
-                if (!_usbManager.HasPermission(device))
-                {
-                    if (!_permissionRequested)
-                    {
-                        _permissionRequested = true;
-                        _usbManager.RequestPermission(device, _permissionIntent);
-                    }
-                }
-                else
+                // Give the Activity intent filter a moment to auto-grant permission
+                await Task.Delay(500);
+
+                if (_usbManager.HasPermission(device))
                 {
                     _ = StartAsync();
+                }
+                else if (!_permissionRequested)
+                {
+                    global::Android.Util.Log.Info(Tag, "Permission not auto-granted, requesting manually");
+                    _permissionRequested = true;
+                    _usbManager.RequestPermission(device, _permissionIntent);
                 }
             }
         }

@@ -70,11 +70,22 @@
 			<Grid Grid.Row="2" RowDefinitions="Auto,*">
 				<BoxView Style="{StaticResource FooterBorder}" />
 				<ContentView Grid.Row="1" Style="{StaticResource FooterContent}">
-					<Button
-						HorizontalOptions="Center"
-						Command="{Binding NextCustomerCommand}"
-						Style="{StaticResource SecondaryButtonStyle}"
-						Text="Next customer" />
+					<Grid>
+						<Button
+							HorizontalOptions="Center"
+							Command="{Binding NextCustomerCommand}"
+							Style="{StaticResource SecondaryButtonStyle}"
+							Text="Next customer"
+							IsVisible="{Binding IsLockerClosed}" />
+						<Label
+							HorizontalOptions="Center"
+							VerticalOptions="Center"
+							FontSize="{StaticResource SubtitleFontSize}"
+							FontFamily="{StaticResource BoldFontFamily}"
+							TextColor="{StaticResource Secondary}"
+							Text="Please close the locker"
+							IsVisible="{Binding ShowCloseLockerMessage}" />
+					</Grid>
 				</ContentView>
 			</Grid>
 		</Grid>

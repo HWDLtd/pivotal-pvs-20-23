@@ -3,6 +3,8 @@
     <!-- Newland FM430 Scanner - VID: 0x1EAB (7851 decimal) -->
     <!-- USB CDC (Virtual Serial Port) - PID: 0x06 -->
     <usb-device vendor-id="7851" product-id="6" />
+    <!-- USB CDC (alternate PID) - PID: 0x1D06 (7430 decimal) -->
+    <usb-device vendor-id="7851" product-id="7430" />
     <!-- USB HID POS Interface - PID: 0x10 -->
     <usb-device vendor-id="7851" product-id="16" />
     <!-- USB Composite KBW+POS Interface - PID: 0x22 -->
