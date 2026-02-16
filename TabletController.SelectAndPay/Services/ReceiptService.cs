@@ -117,9 +117,16 @@ namespace TabletController.SelectAndPay.Services
                     }
 
                     var priceText = $"€{itemTotal:F2}";
+                    var receiptName = !string.IsNullOrEmpty(product.ReceiptName) 
+                        ? product.ReceiptName 
+                        : product.Name.ToUpperInvariant();
+                    if (receiptName.Length > 40)
+                    {
+                        receiptName = receiptName.Substring(0, 40);
+                    }
                     lines.Add(new ReceiptLine
                     {
-                        Text = product.Name.PadRight(LineLength - priceText.Length) + priceText,
+                        Text = receiptName.PadRight(LineLength - priceText.Length) + priceText,
                         Alignment = ReceiptAlignment.Left,
                         LineType = ReceiptLineType.Text
                     });

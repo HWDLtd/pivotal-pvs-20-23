@@ -12,6 +12,7 @@
         public int CategoryId { get; set; }
         public string? CollectionCode { get; set; }
         public string? Barcode { get; set; }
+        public string? ReceiptName { get; set; }
         public LockerDetails? LockerDetails { get; set; }
     }
 }
